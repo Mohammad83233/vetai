@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: vetai-mongodb
+    restart: unless-stopped
+
+    # 🔴 IMPORTANT: enable authentication & external access
+    command: [ "mongod", "--auth", "--bind_ip_all" ]
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: vetai_password_change_me
+      MONGO_INITDB_DATABASE: vetai
+
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+    ports:
+      - "27017:27017"
+
+    networks:
+      - vetai-network
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: vetai-backend
+    restart: unless-stopped
+
+    environment:
+      - MONGODB_URL=mongodb://vetai_user:vetai_password@mongodb:27017/vetai?authSource=vetai
+      - DATABASE_NAME=vetai
+      - SECRET_KEY=${SECRET_KEY:-vetai-secret-key-change-in-production-2024}
+      - DEBUG=False
+
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - mongodb
+
+    networks:
+      - vetai-network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vetai-frontend
+    restart: unless-stopped
+
+    environment:
+      - VITE_API_URL=http://localhost:8000
+
+    ports:
+      - "3000:80"
+
+    depends_on:
+      - backend
+
+    networks:
+      - vetai-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  vetai-network:
+    driver: bridge

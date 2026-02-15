@@ -1,0 +1,1094 @@
+[
+    {
+        "disease": "Equine Infectious Anemia",
+        "typical_symptoms": [
+            "weight drop",
+            "fever",
+            "weakness",
+            "lethargy",
+            "chest edema",
+            "jaundice",
+            "gum spots",
+            "rapid pulse"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Porcine Circovirus Disease",
+        "typical_symptoms": [
+            "weight drop",
+            "lethargy",
+            "diarrhea",
+            "breathing difficulty",
+            "swollen nodes",
+            "pale skin",
+            "jaundice",
+            "rough coat"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Porcine Epidemic Diarrhea",
+        "typical_symptoms": [
+            "vomiting",
+            "dehydration",
+            "anorexia",
+            "watery scours",
+            "yellow feces",
+            "severe shivering",
+            "thin gut",
+            "huddled pigs"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Bovine Coccidiosis",
+        "typical_symptoms": [
+            "diarrhea",
+            "weight drop",
+            "dehydration",
+            "anorexia",
+            "black feces",
+            "rectal prolapse",
+            "bloody scours",
+            "nerve tremors"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Rabbit Syphilis",
+        "typical_symptoms": [
+            "sneezing",
+            "anorexia",
+            "hair loss",
+            "lethargy",
+            "genital sores",
+            "crusty nose",
+            "swollen lips",
+            "eye scabs"
+        ],
+        "species": "Rabbit"
+    },
+    {
+        "disease": "Equine Lyme Disease",
+        "typical_symptoms": [
+            "lethargy",
+            "anorexia",
+            "stiffness",
+            "lameness",
+            "mood change",
+            "excitable",
+            "skin sensitivity",
+            "joint swelling"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Foot and Mouth Disease",
+        "typical_symptoms": [
+            "high fever",
+            "weight drop",
+            "anorexia",
+            "shuffling",
+            "snout blisters",
+            "toe vesicles",
+            "lip smacking",
+            "foaming saliva"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "African Swine Fever",
+        "typical_symptoms": [
+            "high fever",
+            "weakness",
+            "bloody stool",
+            "anorexia",
+            "internal bleeding",
+            "black vomit",
+            "nose bleed",
+            "body cyanosis"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Feline Chlamydia",
+        "typical_symptoms": [
+            "sneezing",
+            "nasal drip",
+            "fever",
+            "lethargy",
+            "swollen eyes",
+            "yellow eye drip",
+            "clear drip",
+            "chronic hack"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Feline Calicivirus",
+        "typical_symptoms": [
+            "sneezing",
+            "nasal mucus",
+            "fever",
+            "lethargy",
+            "eye crust",
+            "tongue ulcers",
+            "limping",
+            "gingivitis"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Feline Leukemia",
+        "typical_symptoms": [
+            "diarrhea",
+            "fever",
+            "weight drop",
+            "lethargy",
+            "pale gums",
+            "white mouth",
+            "swollen nodes",
+            "active infections"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Bovine Leukemia Virus",
+        "typical_symptoms": [
+            "weight drop",
+            "lethargy",
+            "diarrhea",
+            "breathing difficulty",
+            "bulging eyes",
+            "swollen nodes",
+            "rear paralysis",
+            "internal tumors"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Caprine Arthritis",
+        "typical_symptoms": [
+            "lameness",
+            "stiffness",
+            "weight drop",
+            "lethargy",
+            "swollen knees",
+            "hard udder",
+            "knuckling",
+            "front limp"
+        ],
+        "species": "Goat"
+    },
+    {
+        "disease": "Equine Herpesvirus",
+        "typical_symptoms": [
+            "fever",
+            "coughing",
+            "nasal drip",
+            "lethargy",
+            "ataxia",
+            "scrotal swelling",
+            "mare abortion",
+            "hind weakness"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Canine Infectious Hepatitis",
+        "typical_symptoms": [
+            "fever",
+            "vomiting",
+            "diarrhea",
+            "lethargy",
+            "bloody stool",
+            "swollen tonsils",
+            "liver pain",
+            "skin spots"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Kennel Cough",
+        "typical_symptoms": [
+            "sneezing",
+            "nasal mucus",
+            "fever",
+            "lethargy",
+            "honking cough",
+            "gagging",
+            "throat pain",
+            "white phlegm"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Equine Cushing's Disease",
+        "typical_symptoms": [
+            "sweating",
+            "frequent urine",
+            "weight drop",
+            "lethargy",
+            "curly coat",
+            "eye fat",
+            "pot belly",
+            "hair retention"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Giardiasis",
+        "typical_symptoms": [
+            "vomiting",
+            "diarrhea",
+            "weight drop",
+            "lethargy",
+            "greasy feces",
+            "excessive gas",
+            "dehydration",
+            "bloating"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Feline Panleukopenia",
+        "typical_symptoms": [
+            "vomiting",
+            "diarrhea",
+            "fever",
+            "dehydration",
+            "bloody stool",
+            "collapse",
+            "tucked belly",
+            "hanging head"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Equine Laminitis",
+        "typical_symptoms": [
+            "anorexia",
+            "sweating",
+            "reluctance",
+            "painful walk",
+            "weight shift",
+            "hot hooves",
+            "digital pulse",
+            "sawhorse stance"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Equine Strangles",
+        "typical_symptoms": [
+            "fever",
+            "coughing",
+            "anorexia",
+            "throat pain",
+            "jaw nodes",
+            "yellow pus",
+            "swallow difficulty",
+            "extended neck"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Maedi-Visna",
+        "typical_symptoms": [
+            "weight drop",
+            "breathing difficulty",
+            "coughing",
+            "lethargy",
+            "hard udder",
+            "sharp wasting",
+            "lagging flock",
+            "hind weakness"
+        ],
+        "species": "Sheep"
+    },
+    {
+        "disease": "Bovine Pneumonia",
+        "typical_symptoms": [
+            "fever",
+            "nasal mucus",
+            "coughing",
+            "breathing difficulty",
+            "moist cough",
+            "lung crackles",
+            "extended neck",
+            "flared nostrils"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Bovine Influenza",
+        "typical_symptoms": [
+            "fever",
+            "nasal mucus",
+            "coughing",
+            "lethargy",
+            "explosive cough",
+            "milk drop",
+            "panting",
+            "dull eyes"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Equine Encephalitis",
+        "typical_symptoms": [
+            "fever",
+            "anorexia",
+            "weakness",
+            "lethargy",
+            "head pressing",
+            "circling",
+            "droopy lips",
+            "blindness"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Canine Leptospirosis",
+        "typical_symptoms": [
+            "vomiting",
+            "fever",
+            "anorexia",
+            "shaking",
+            "back pain",
+            "bloody gums",
+            "small urination",
+            "jaundice"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Feline Renal Disease",
+        "typical_symptoms": [
+            "vomiting",
+            "weight drop",
+            "thirst",
+            "frequent urine",
+            "ammonia breath",
+            "mouth sores",
+            "anorexia",
+            "lethargy"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Equine Piroplasmosis",
+        "typical_symptoms": [
+            "fever",
+            "weakness",
+            "anorexia",
+            "constipation",
+            "red urine",
+            "yellow gums",
+            "swollen belly",
+            "rapid breathing"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Goat Pox",
+        "typical_symptoms": [
+            "fever",
+            "nasal mucus",
+            "eye mucus",
+            "breathing difficulty",
+            "skin nodules",
+            "swollen head",
+            "udder pustules",
+            "skin lesions"
+        ],
+        "species": "Goat"
+    },
+    {
+        "disease": "Porcine Reproductive and Respiratory Syndrome",
+        "typical_symptoms": [
+            "fever",
+            "anorexia",
+            "coughing",
+            "breathing difficulty",
+            "blue ears",
+            "early birth",
+            "stillborns",
+            "lung noise"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Blue Tongue Virus",
+        "typical_symptoms": [
+            "fever",
+            "lameness",
+            "nasal mucus",
+            "lethargy",
+            "swollen face",
+            "blue tongue",
+            "hoof redness",
+            "ropey saliva"
+        ],
+        "species": "Sheep"
+    },
+    {
+        "disease": "Bovine Tuberculosis",
+        "typical_symptoms": [
+            "weight drop",
+            "anorexia",
+            "coughing",
+            "breathing difficulty",
+            "active cough",
+            "throat nodes",
+            "sharp emaciation",
+            "chest pain"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Bovine Johne's Disease",
+        "typical_symptoms": [
+            "weight drop",
+            "diarrhea",
+            "weakness",
+            "anorexia",
+            "liquid scours",
+            "projectile feces",
+            "bottle jaw",
+            "rib prominence"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Chlamydia in Sheep",
+        "typical_symptoms": [
+            "fever",
+            "lameness",
+            "lethargy",
+            "anorexia",
+            "eye redness",
+            "cloudy eye",
+            "late abortion",
+            "vaginal drip"
+        ],
+        "species": "Sheep"
+    },
+    {
+        "disease": "Equine Arthritis",
+        "typical_symptoms": [
+            "stiffness",
+            "lameness",
+            "low activity",
+            "reluctance",
+            "short stride",
+            "swollen fetlock",
+            "joint heat",
+            "clicking joints"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Rabbit Hemorrhagic Disease",
+        "typical_symptoms": [
+            "fever",
+            "breathing difficulty",
+            "anorexia",
+            "lethargy",
+            "swollen lids",
+            "bloody mucus",
+            "convulsions",
+            "nasal bleed"
+        ],
+        "species": "Rabbit"
+    },
+    {
+        "disease": "Equine Pneumonia",
+        "typical_symptoms": [
+            "fever",
+            "anorexia",
+            "coughing",
+            "nasal mucus",
+            "bilateral drip",
+            "foul breath",
+            "lung crackles",
+            "chest pain"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Canine Influenza",
+        "typical_symptoms": [
+            "fever",
+            "sneezing",
+            "nasal mucus",
+            "lethargy",
+            "hacking cough",
+            "eye redness",
+            "heavy breathing",
+            "rough coat"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Ringworm",
+        "typical_symptoms": [
+            "itching",
+            "redness",
+            "lethargy",
+            "anorexia",
+            "bald circles",
+            "crusty rings",
+            "brittle fur",
+            "scaly skin"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Feline Asthma",
+        "typical_symptoms": [
+            "coughing",
+            "breathing difficulty",
+            "lethargy",
+            "anorexia",
+            "wheezing",
+            "hunched posture",
+            "blue tongue",
+            "spasmodic cough"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Myxomatosis",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "anorexia",
+            "weakness",
+            "closed eyes",
+            "head lumps",
+            "swollen genitals",
+            "droopy ears"
+        ],
+        "species": "Rabbit"
+    },
+    {
+        "disease": "Canine Hepatitis",
+        "typical_symptoms": [
+            "fever",
+            "vomiting",
+            "anorexia",
+            "belly pain",
+            "blue eye",
+            "skin bruising",
+            "yellow eyes",
+            "slow clotting"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Pyometra",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "thirst",
+            "anorexia",
+            "vaginal pus",
+            "frequent urine",
+            "swollen belly",
+            "panting"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Canine Heartworm Disease",
+        "typical_symptoms": [
+            "weight drop",
+            "fatigue",
+            "coughing",
+            "breathing difficulty",
+            "soft cough",
+            "swollen belly",
+            "fainting",
+            "bloody urine"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Gastroenteritis",
+        "typical_symptoms": [
+            "vomiting",
+            "diarrhea",
+            "dehydration",
+            "lethargy",
+            "belly pain",
+            "anorexia",
+            "fever",
+            "bloating"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "West Nile Virus",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "weakness",
+            "anorexia",
+            "stumbling",
+            "muzzle twitch",
+            "head tilt",
+            "muscle tremors"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Equine West Nile Virus",
+        "typical_symptoms": [
+            "fever",
+            "weakness",
+            "stumbling",
+            "lethargy",
+            "muzzle twitch",
+            "muscle tremors",
+            "recumbency",
+            "lip droop"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Salmonellosis",
+        "typical_symptoms": [
+            "diarrhea",
+            "vomiting",
+            "lethargy",
+            "anorexia",
+            "fever",
+            "belly pain",
+            "bloody stool",
+            "foul smell"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Canine Parvovirus",
+        "typical_symptoms": [
+            "vomiting",
+            "bloody stool",
+            "lethargy",
+            "dehydration",
+            "projectile vomit",
+            "metallic breath",
+            "tucked belly",
+            "collapse"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Snuffles",
+        "typical_symptoms": [
+            "sneezing",
+            "coughing",
+            "lethargy",
+            "anorexia",
+            "matted paws",
+            "eye mucus",
+            "white mucus",
+            "loud snoring"
+        ],
+        "species": "Rabbit"
+    },
+    {
+        "disease": "Feline Infectious Peritonitis",
+        "typical_symptoms": [
+            "fever",
+            "weight drop",
+            "breathing difficulty",
+            "lethargy",
+            "swollen abdomen",
+            "straw fluid",
+            "jaundice",
+            "cloudy eyes"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Canine Distemper",
+        "typical_symptoms": [
+            "fever",
+            "vomiting",
+            "nasal mucus",
+            "diarrhea",
+            "green eyes",
+            "gum seizures",
+            "hard pads",
+            "hard nose"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Hyperthyroidism",
+        "typical_symptoms": [
+            "vomiting",
+            "diarrhea",
+            "weight drop",
+            "thirst",
+            "heart spike",
+            "hyperactivity",
+            "ravenous appetite",
+            "rough coat"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Bovine Respiratory Syncytial Virus",
+        "typical_symptoms": [
+            "fever",
+            "anorexia",
+            "coughing",
+            "breathing difficulty",
+            "rib emphysema",
+            "lip frothing",
+            "expiratory grunt",
+            "high wheeze"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Scrapie",
+        "typical_symptoms": [
+            "weight drop",
+            "weakness",
+            "lethargy",
+            "anorexia",
+            "lip smacking",
+            "intense rubbing",
+            "wool loss",
+            "hyper-excitement"
+        ],
+        "species": "Sheep"
+    },
+    {
+        "disease": "Swine Fever",
+        "typical_symptoms": [
+            "high fever",
+            "anorexia",
+            "diarrhea",
+            "shivering",
+            "purple blotches",
+            "gummed eyes",
+            "gut ulcers",
+            "staggering"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Actinobacillus Suis",
+        "typical_symptoms": [
+            "fever",
+            "coughing",
+            "weakness",
+            "anorexia",
+            "skin spots",
+            "kidney spots",
+            "purple belly",
+            "skin necrosis"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Swine Erysipelas",
+        "typical_symptoms": [
+            "high fever",
+            "lethargy",
+            "sudden limp",
+            "anorexia",
+            "diamond welts",
+            "stiff joints",
+            "skin sloughing",
+            "heart noise"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Feline Immunodeficiency Virus",
+        "typical_symptoms": [
+            "weight drop",
+            "recurrent fever",
+            "diarrhea",
+            "lethargy",
+            "mouth sores",
+            "slow healing",
+            "swollen nodes",
+            "dull coat"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Tick-Borne Disease",
+        "typical_symptoms": [
+            "anorexia",
+            "fever",
+            "lethargy",
+            "weakness",
+            "joint pain",
+            "swollen nodes",
+            "pale gums",
+            "skin bruising"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Bovine Mastitis",
+        "typical_symptoms": [
+            "fever",
+            "anorexia",
+            "weakness",
+            "pain",
+            "clumpy milk",
+            "hot udder",
+            "swollen quarter",
+            "bloody milk"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Actinobacillus Pleuropneumonia",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "coughing",
+            "breathing difficulty",
+            "snout foam",
+            "blue ears",
+            "rib thumping",
+            "lung crackles"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Leptospirosis",
+        "typical_symptoms": [
+            "vomiting",
+            "fever",
+            "lethargy",
+            "weakness",
+            "belly pain",
+            "yellow skin",
+            "thirst",
+            "bloody urine"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Swine Dysentery",
+        "typical_symptoms": [
+            "weight drop",
+            "anorexia",
+            "bloody mucus",
+            "dehydration",
+            "gray feces",
+            "sunken flanks",
+            "huddling",
+            "abdominal pain"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Upper Respiratory Infection",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "anorexia",
+            "sneezing",
+            "congestion",
+            "runny nose",
+            "coughing",
+            "watery eyes"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Intestinal Parasites",
+        "typical_symptoms": [
+            "weight drop",
+            "diarrhea",
+            "vomiting",
+            "lethargy",
+            "pot belly",
+            "visible worms",
+            "scooting",
+            "anemia"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Feline Coronavirus",
+        "typical_symptoms": [
+            "vomiting",
+            "weight drop",
+            "fever",
+            "soft feces",
+            "liquid stool",
+            "unstable appetite",
+            "bloating",
+            "lethargy"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Rabbit Calicivirus",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "anorexia",
+            "breathing difficulty",
+            "nasal bleed",
+            "spasms",
+            "collapse",
+            "vocal pain"
+        ],
+        "species": "Rabbit"
+    },
+    {
+        "disease": "Bovine Parainfluenza",
+        "typical_symptoms": [
+            "fever",
+            "runny nose",
+            "coughing",
+            "lethargy",
+            "throat swelling",
+            "droopy ears",
+            "tearing",
+            "shallow breathing"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Feline Rhinotracheitis",
+        "typical_symptoms": [
+            "frequent sneezing",
+            "fever",
+            "anorexia",
+            "eye discharge",
+            "nasal crusts",
+            "drooling",
+            "squinting",
+            "lethargy"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Inflammatory Bowel Disease",
+        "typical_symptoms": [
+            "weight drop",
+            "lethargy",
+            "anorexia",
+            "vomiting",
+            "liquid stool",
+            "bloody stool",
+            "stomach gurgle",
+            "excessive gas"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Bovine Viral Diarrhea",
+        "typical_symptoms": [
+            "fever",
+            "nasal mucus",
+            "diarrhea",
+            "lethargy",
+            "watery scours",
+            "mouth ulcers",
+            "esophagus sores",
+            "foot sores"
+        ],
+        "species": "Cow"
+    },
+    {
+        "disease": "Pancreatitis",
+        "typical_symptoms": [
+            "vomiting",
+            "dehydration",
+            "fever",
+            "lethargy",
+            "belly pain",
+            "diarrhea",
+            "prayer stretch",
+            "anorexia"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Swine Influenza",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "nasal mucus",
+            "breathing difficulty",
+            "barking cough",
+            "prostration",
+            "muscle pain",
+            "red eyes"
+        ],
+        "species": "Pig"
+    },
+    {
+        "disease": "Feline Herpesvirus",
+        "typical_symptoms": [
+            "sneezing",
+            "fever",
+            "anorexia",
+            "nasal block",
+            "eye mucus",
+            "corneal ulcers",
+            "smell loss",
+            "squinting"
+        ],
+        "species": "Cat"
+    },
+    {
+        "disease": "Equine Leptospirosis",
+        "typical_symptoms": [
+            "fever",
+            "anorexia",
+            "weakness",
+            "lethargy",
+            "jaundice",
+            "moon blindness",
+            "cloudy eyes",
+            "kidney pain"
+        ],
+        "species": "Horse"
+    },
+    {
+        "disease": "Lyme Disease",
+        "typical_symptoms": [
+            "fever",
+            "lethargy",
+            "stiffness",
+            "anorexia",
+            "shifting limp",
+            "swollen joints",
+            "swollen nodes",
+            "depression"
+        ],
+        "species": "Dog"
+    },
+    {
+        "disease": "Equine Influenza",
+        "typical_symptoms": [
+            "coughing",
+            "fever",
+            "nasal mucus",
+            "lethargy",
+            "dry cough",
+            "clear discharge",
+            "muscle pain",
+            "swollen legs"
+        ],
+        "species": "Horse"
+    }
+]

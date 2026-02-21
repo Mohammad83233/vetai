@@ -14,7 +14,7 @@ const SPECIES_OPTIONS = [
     { value: 'fish', label: 'Fish' },
     { value: 'reptile', label: 'Reptile' },
     { value: 'horse', label: 'Horse' },
-    { value: 'cattle', label: 'Cattle' },
+    { value: 'cow', label: 'Cow' },
     { value: 'goat', label: 'Goat' },
     { value: 'sheep', label: 'Sheep' },
     { value: 'pig', label: 'Pig' },
@@ -324,7 +324,15 @@ export default function PatientRegistration() {
                         {createMutation.isError && (
                             <div className="alert alert-error" style={{ marginTop: 'var(--space-4)' }}>
                                 <AlertCircle size={18} />
-                                <span>{createMutation.error?.response?.data?.detail || 'Failed to register patient'}</span>
+                                <span>{(() => {
+                                    const detail = createMutation.error?.response?.data?.detail
+                                    if (!detail) return 'Failed to register patient'
+                                    if (typeof detail === 'string') return detail
+                                    if (Array.isArray(detail)) {
+                                        return detail.map(e => e.msg || JSON.stringify(e)).join(', ')
+                                    }
+                                    return 'Failed to register patient'
+                                })()}</span>
                             </div>
                         )}
 

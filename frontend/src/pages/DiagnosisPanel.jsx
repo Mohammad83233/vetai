@@ -175,7 +175,7 @@ export default function DiagnosisPanel() {
 
                 setUploadedImages(prev => [...prev, imageData])
 
-                // Auto-analyze
+                // Auto-analyze with patient species
                 const analyzeRes = await imagesAPI.analyze(imageData.image_id)
                 setImageAnalysis(analyzeRes.data)
             } catch (err) {

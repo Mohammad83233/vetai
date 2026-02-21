@@ -40,7 +40,7 @@ class Settings(BaseSettings):
     MAX_IMAGE_SIZE_MB: int = 10
     MAX_AUDIO_SIZE_MB: int = 50
     UPLOAD_DIR: str = "./uploads"
-    
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

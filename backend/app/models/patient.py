@@ -19,7 +19,7 @@ class Species(str, Enum):
     FISH = "fish"
     REPTILE = "reptile"
     HORSE = "horse"
-    CATTLE = "cattle"
+    COW = "cow"
     GOAT = "goat"
     SHEEP = "sheep"
     PIG = "pig"

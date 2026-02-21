@@ -74,8 +74,7 @@ def _encode_species(species: str) -> int:
     # Map from app's species names to model's expected names
     species_map = {
         'dog': 'Dog', 'cat': 'Cat', 'horse': 'Horse', 'cow': 'Cow',
-        'cattle': 'Cow', 'pig': 'Pig', 'rabbit': 'Rabbit',
-        'goat': 'Goat', 'sheep': 'Sheep'
+        'pig': 'Pig', 'rabbit': 'Rabbit', 'goat': 'Goat', 'sheep': 'Sheep'
     }
     mapped = species_map.get(species.lower(), species.title())
     try:
@@ -138,128 +137,179 @@ def predict_diseases(
     top_n: int = 3
 ) -> List[Dict[str, Any]]:
     """
-    Predict top N diseases for the given patient input.
-    
-    Returns a list of dicts, each with:
-      - disease_name: str
-      - probability: float (0-1)
-      - confidence: str (low/medium/high)
-      - matched_symptoms: list of input symptoms that match this disease
-      - verification_symptoms: list of remaining symptoms for doctor to verify
-      - all_disease_symptoms: full list of 8 symptoms for this disease
-      - species: str
-      - urgency: str
+    Predict top N diseases using KNOWLEDGE-BASE symptom matching as primary
+    ranking, with optional XGBoost model boost as secondary signal.
+
+    Strategy:
+      1. Score ALL diseases in veterinary_knowledge.json by how many input
+         symptoms match each disease's typical_symptoms (filtered by species).
+      2. If the XGBoost model is loaded, fetch its probabilities and blend
+         them as a secondary signal (20% weight).
+      3. Return the top N diseases sorted by combined score.
+
+    This ensures diseases with the most matching symptoms always surface,
+    regardless of what the XGBoost model predicts.
     """
-    if not _load_artifacts():
-        return _fallback_prediction(species, symptoms)
+    _load_artifacts()
 
-    try:
-        # 1. Encode species and breed
-        species_encoded = _encode_species(species)
-        breed_encoded = _encode_breed(breed or "")
+    # --- Ensure we have a knowledge base to work with ---
+    kb = _knowledge_base
+    if not kb:
+        # Try loading directly
+        kb_path = os.path.join(MODEL_DIR, 'veterinary_knowledge.json')
+        try:
+            with open(kb_path, 'r') as f:
+                kb_list = json.load(f)
+            kb = {
+                entry['disease']: {
+                    'symptoms': entry['typical_symptoms'],
+                    'species': entry['species']
+                }
+                for entry in kb_list
+            }
+        except Exception:
+            pass
 
-        # 2. Vectorize symptoms (TF-IDF)
-        symptom_text = ', '.join(symptoms)
-        symptom_features = _symptom_vectorizer.transform([symptom_text])
+    if not kb:
+        return [{
+            "disease_name": "Unable to predict - knowledge base unavailable",
+            "probability": 0.0, "confidence": "low",
+            "matched_symptoms": [], "verification_symptoms": [],
+            "all_disease_symptoms": [], "common_symptoms": symptoms,
+            "species": species, "urgency": "routine", "symptom_confidence": 0
+        }]
 
-        # 3. Compute and scale vitals
-        vitals_scaled = _compute_vitals(
-            temperature, heart_rate, duration_days,
-            weight_kg, age_months, symptoms
-        )
+    # --- Species mapping ---
+    species_map = {
+        'dog': 'Dog', 'cat': 'Cat', 'horse': 'Horse', 'cow': 'Cow',
+        'pig': 'Pig', 'rabbit': 'Rabbit', 'goat': 'Goat', 'sheep': 'Sheep'
+    }
+    target_species = species_map.get(species.lower(), species.title())
+    input_symptoms_lower = set(s.lower().strip() for s in symptoms)
 
-        # 4. Build feature vector: [animal, breed, tfidf..., symptom_count, vitals...]
-        #    Total: 1 + 1 + 316 + 1 + 6 = 325 features (must match model.n_features_in_)
-        from scipy.sparse import hstack, csr_matrix
-        cat_features = csr_matrix(np.array([[species_encoded, breed_encoded]]))
-        symptom_count = csr_matrix(np.array([[float(len(symptoms))]]))
-        feature_vector = hstack([cat_features, symptom_features, symptom_count, csr_matrix(vitals_scaled)])
+    # ──────────────────────────────────────────────────────────────
+    # STEP 1 — Score every disease in the knowledge base by symptom match
+    # ──────────────────────────────────────────────────────────────
+    kb_scores = []   # list of (disease_name, match_ratio, matched, verification, all_symptoms)
 
-        # 5. Predict probabilities
-        probabilities = _model.predict_proba(feature_vector)[0]
+    for disease_name, info in kb.items():
+        # Filter by species
+        if info.get('species') != target_species:
+            continue
 
-        # 6. Get top N indices
-        top_indices = np.argsort(probabilities)[::-1][:top_n]
-
-        # 7. Build results with verification checklists
-        results = []
-        input_symptoms_lower = set(s.lower().strip() for s in symptoms)
-
-        for idx in top_indices:
-            disease_name = _disease_encoder.inverse_transform([idx])[0]
-            prob = float(probabilities[idx])
-
-            # Get known symptoms from knowledge base
-            kb_entry = _knowledge_base.get(disease_name, {})
-            all_disease_symptoms = kb_entry.get('symptoms', [])
-
-            # Split into matched vs remaining (verification) symptoms
-            matched = []
-            verification = []
-            for ds in all_disease_symptoms:
-                ds_lower = ds.lower().strip()
-                # Check if any input symptom matches (fuzzy partial match)
-                is_matched = any(
-                    ds_lower in inp or inp in ds_lower
-                    for inp in input_symptoms_lower
-                )
-                if is_matched:
-                    matched.append(ds)
-                else:
-                    verification.append(ds)
-
-            # Determine confidence level
-            if prob >= 0.6:
-                confidence = "high"
-            elif prob >= 0.3:
-                confidence = "medium"
+        all_disease_symptoms = info.get('symptoms', [])
+        matched = []
+        verification = []
+        for ds in all_disease_symptoms:
+            ds_lower = ds.lower().strip()
+            is_matched = any(
+                ds_lower in inp or inp in ds_lower
+                for inp in input_symptoms_lower
+            )
+            if is_matched:
+                matched.append(ds)
             else:
-                confidence = "low"
+                verification.append(ds)
 
-            # Determine urgency
-            if prob >= 0.7:
-                urgency = "urgent"
-            elif prob >= 0.4:
-                urgency = "soon"
-            else:
-                urgency = "routine"
+        if len(matched) > 0:
+            match_ratio = len(matched) / len(all_disease_symptoms) if all_disease_symptoms else 0.0
+            kb_scores.append((disease_name, match_ratio, matched, verification, all_disease_symptoms))
 
-            # symptom_confidence: the ONLY value shown in UI
-            max_symptoms = len(all_disease_symptoms) if all_disease_symptoms else 8
-            symptom_confidence = round((len(matched) / max_symptoms) * 100) if max_symptoms > 0 else 0
+    # ──────────────────────────────────────────────────────────────
+    # STEP 2 — Optionally get XGBoost probabilities for blending
+    # ──────────────────────────────────────────────────────────────
+    model_probs = {}   # disease_name -> probability
+    if _model is not None:
+        try:
+            species_encoded = _encode_species(species)
+            breed_encoded = _encode_breed(breed or "")
+            symptom_text = ', '.join(symptoms)
+            symptom_features = _symptom_vectorizer.transform([symptom_text])
+            vitals_scaled = _compute_vitals(
+                temperature, heart_rate, duration_days,
+                weight_kg, age_months, symptoms
+            )
+            from scipy.sparse import hstack, csr_matrix
+            cat_features = csr_matrix(np.array([[species_encoded, breed_encoded]]))
+            symptom_count = csr_matrix(np.array([[float(len(symptoms))]]))
+            feature_vector = hstack([cat_features, symptom_features, symptom_count, csr_matrix(vitals_scaled)])
 
-            results.append({
-                "disease_name": disease_name,
-                "probability": max(0.0, min(1.0, round(prob, 4))),
-                "confidence": confidence,
-                "matched_symptoms": matched,
-                "verification_symptoms": verification,
-                "all_disease_symptoms": all_disease_symptoms,
-                "common_symptoms": all_disease_symptoms,  # backward compat
-                "species": kb_entry.get('species', species),
-                "urgency": urgency,
-                "symptom_confidence": symptom_confidence
-            })
+            probabilities = _model.predict_proba(feature_vector)[0]
+            for i, prob in enumerate(probabilities):
+                try:
+                    dname = _disease_encoder.inverse_transform([i])[0]
+                    model_probs[dname] = float(prob)
+                except Exception:
+                    pass
+        except Exception as e:
+            print(f"XGBoost boost skipped: {e}")
 
-        # 8. Normalize confidence scores relative to Top N
-        #    Raw predict_proba spreads across ~75 classes, making individual
-        #    scores very small.  Normalizing among the Top N gives the doctor
-        #    a meaningful relative comparison.
-        total_prob = sum(r["probability"] for r in results)
-        if total_prob > 0:
-            for r in results:
-                r["normalized_confidence"] = round(r["probability"] / total_prob, 4)
+    # ──────────────────────────────────────────────────────────────
+    # STEP 3 — Combine scores: KB match (80%) + model probability (20%)
+    # ──────────────────────────────────────────────────────────────
+    KB_WEIGHT = 0.80
+    MODEL_WEIGHT = 0.20
+
+    combined = []
+    for disease_name, match_ratio, matched, verification, all_syms in kb_scores:
+        model_prob = model_probs.get(disease_name, 0.0)
+        combined_score = (match_ratio * KB_WEIGHT) + (model_prob * MODEL_WEIGHT)
+        combined.append((disease_name, combined_score, match_ratio, matched, verification, all_syms))
+
+    # Sort by combined score descending
+    combined.sort(key=lambda x: x[1], reverse=True)
+
+    # ──────────────────────────────────────────────────────────────
+    # STEP 4 — Build top-N result dicts
+    # ──────────────────────────────────────────────────────────────
+    results = []
+    for disease_name, combined_score, match_ratio, matched, verification, all_syms in combined[:top_n]:
+        max_symptoms = len(all_syms) if all_syms else 8
+        symptom_confidence = round((len(matched) / max_symptoms) * 100) if max_symptoms > 0 else 0
+
+        # Confidence / urgency based on symptom match ratio
+        if match_ratio >= 0.6:
+            confidence = "high"
+        elif match_ratio >= 0.3:
+            confidence = "medium"
         else:
-            for r in results:
-                r["normalized_confidence"] = round(1.0 / len(results), 4) if results else 0.0
+            confidence = "low"
 
-        return results
+        if match_ratio >= 0.7:
+            urgency = "urgent"
+        elif match_ratio >= 0.4:
+            urgency = "soon"
+        else:
+            urgency = "routine"
 
-    except Exception as e:
-        print(f"Prediction error: {e}")
-        import traceback
-        traceback.print_exc()
+        kb_entry = kb.get(disease_name, {})
+        results.append({
+            "disease_name": disease_name,
+            "probability": max(0.0, min(1.0, round(combined_score, 4))),
+            "confidence": confidence,
+            "matched_symptoms": matched,
+            "verification_symptoms": verification,
+            "all_disease_symptoms": all_syms,
+            "common_symptoms": all_syms,
+            "species": kb_entry.get('species', species),
+            "urgency": urgency,
+            "symptom_confidence": symptom_confidence
+        })
+
+    # Normalize confidence scores relative to Top N
+    total_prob = sum(r["probability"] for r in results)
+    if total_prob > 0:
+        for r in results:
+            r["normalized_confidence"] = round(r["probability"] / total_prob, 4)
+    else:
+        for r in results:
+            r["normalized_confidence"] = round(1.0 / len(results), 4) if results else 0.0
+
+    # If no KB matches at all, fall back
+    if not results:
         return _fallback_prediction(species, symptoms)
+
+    return results
 
 
 def get_followup_symptoms(predictions: List[Dict[str, Any]]) -> List[str]:
@@ -371,8 +421,7 @@ def _fallback_prediction(species: str, symptoms: List[str]) -> List[Dict[str, An
     # Species mapping for matching
     species_map = {
         'dog': 'Dog', 'cat': 'Cat', 'horse': 'Horse', 'cow': 'Cow',
-        'cattle': 'Cow', 'pig': 'Pig', 'rabbit': 'Rabbit',
-        'goat': 'Goat', 'sheep': 'Sheep'
+        'pig': 'Pig', 'rabbit': 'Rabbit', 'goat': 'Goat', 'sheep': 'Sheep'
     }
     target_species = species_map.get(species.lower(), species.title())
 

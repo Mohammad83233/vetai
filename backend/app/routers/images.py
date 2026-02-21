@@ -101,8 +101,7 @@ async def analyze_image(
     """
     Analyze an uploaded image using AI (MobileNetV2 transfer learning).
     
-    Returns detected features and suggested veterinary conditions
-    based on the image type (skin/eye).
+    Returns detected features and suggested veterinary conditions (skin/eye).
     """
     # Get image from database
     images = Database.get_collection("images")

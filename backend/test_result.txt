@@ -1,0 +1,53 @@
+=== STDOUT ===
+Model path: c:\Users\nisham\vetai\backend\Antigravity_Package\vet_densenet_model.keras
+Labels path: c:\Users\nisham\vetai\backend\Antigravity_Package\labels.pkl
+Model exists: True
+Labels exists: True
+
+--- Labels (raw type: dict) ---
+Number of classes: 14
+  [0] bacterial_dermatosis
+  [1] cataract
+  [2] cherry_eye
+  [3] conjunctivitis
+  [4] flea_allergy
+  [5] foot-and-mouth
+  [6] fungal_infections
+  [7] glaucoma
+  [8] healthy
+  [9] hypersensitivity_allergic_dermatosis
+  [10] iris_atrophy
+  [11] lumpy
+  [12] ringworm
+  [13] scabies
+
+--- Loading DenseNet121 model ---
+Input shape: (None, 224, 224, 3)
+Output shape: (None, 14)
+
+--- Running inference on synthetic 224x224 image ---
+Prediction shape: (1, 14)
+
+Top 5 predictions:
+  1. healthy: 0.7143
+  2. lumpy: 0.1078
+  3. fungal_infections: 0.0709
+  4. foot-and-mouth: 0.0631
+  5. bacterial_dermatosis: 0.0247
+
+All predictions sum: 1.0000
+
+=== DenseNet121 model loaded and inference works correctly! ===
+
+=== STDERR ===
+2026-03-10 10:37:28.126051: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-10 10:37:29.977819: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-10 10:37:31.080829: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-10 10:37:36.867569: I external/local_xla/xla/service/service.cc:163] XLA service 0x1fb7d633d20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2026-03-10 10:37:36.867593: I external/local_xla/xla/service/service.cc:171]   StreamExecutor device (0): Host, Default Version
+2026-03-10 10:37:36.985302: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1773119258.457840   12180 device_compiler.h:196] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+
+=== EXIT CODE: 0 ===

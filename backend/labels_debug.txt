@@ -1,0 +1,14 @@
+0: bacterial_dermatosis
+1: cataract
+2: cherry_eye
+3: conjunctivitis
+4: flea_allergy
+5: foot-and-mouth
+6: fungal_infections
+7: glaucoma
+8: healthy
+9: hypersensitivity_allergic_dermatosis
+10: iris_atrophy
+11: lumpy
+12: ringworm
+13: scabies

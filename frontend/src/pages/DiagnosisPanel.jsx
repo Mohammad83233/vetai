@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { clinicalAPI, diagnosisAPI, patientsAPI, treatmentAPI, reportsAPI, imagesAPI, voiceAPI } from '../services/api'
-import { Brain, AlertCircle, CheckCircle, HelpCircle, Pill, FileText, Download, Upload, Image, X, Mic, MicOff, Volume2, Target, Shield, Scan, Eye } from 'lucide-react'
+import { Brain, AlertCircle, CheckCircle, HelpCircle, Pill, FileText, Download, Upload, Image, X, Mic, MicOff, Volume2, Target, Shield } from 'lucide-react'
 
 export default function DiagnosisPanel() {
     const { recordId } = useParams()
@@ -28,7 +28,6 @@ export default function DiagnosisPanel() {
 
     // Image upload states
     const [uploadedImages, setUploadedImages] = useState([])
-    const [imageType, setImageType] = useState('skin')
     const [isUploading, setIsUploading] = useState(false)
     const [imageAnalysis, setImageAnalysis] = useState(null)
 
@@ -167,7 +166,7 @@ export default function DiagnosisPanel() {
             try {
                 const formData = new FormData()
                 formData.append('file', file)
-                formData.append('image_type', imageType)
+                formData.append('image_type', 'general')
 
                 // Upload
                 const uploadRes = await imagesAPI.upload(formData)
@@ -175,7 +174,7 @@ export default function DiagnosisPanel() {
 
                 setUploadedImages(prev => [...prev, imageData])
 
-                // Auto-analyze with patient species
+                // Auto-analyze
                 const analyzeRes = await imagesAPI.analyze(imageData.image_id)
                 setImageAnalysis(analyzeRes.data)
             } catch (err) {
@@ -561,65 +560,13 @@ export default function DiagnosisPanel() {
                             <div className="card-header">
                                 <h3 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
                                     <Image size={20} />
-                                    Clinical Images
+                                    AI Disease Detection
                                 </h3>
+                                <p style={{ margin: '4px 0 0 0', fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-500)' }}>
+                                    Upload a clinical image for AI-powered disease detection
+                                </p>
                             </div>
                             <div className="card-body">
-                                {/* Image Type Selector */}
-                                <div className="form-group">
-                                    <label className="form-label" style={{ marginBottom: 'var(--space-2)' }}>Select Image Type</label>
-                                    <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-                                        <button
-                                            type="button"
-                                            onClick={() => setImageType('skin')}
-                                            style={{
-                                                flex: 1,
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                gap: 8,
-                                                padding: '12px 16px',
-                                                border: imageType === 'skin' ? '2px solid #3b82f6' : '2px solid #e2e8f0',
-                                                borderRadius: 10,
-                                                background: imageType === 'skin' ? '#eff6ff' : 'white',
-                                                color: imageType === 'skin' ? '#3b82f6' : '#64748b',
-                                                fontWeight: 600,
-                                                fontSize: '0.9rem',
-                                                cursor: 'pointer',
-                                                transition: 'all 0.2s ease',
-                                                fontFamily: 'inherit'
-                                            }}
-                                        >
-                                            <Scan size={18} />
-                                            Skin
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => setImageType('eye')}
-                                            style={{
-                                                flex: 1,
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                gap: 8,
-                                                padding: '12px 16px',
-                                                border: imageType === 'eye' ? '2px solid #3b82f6' : '2px solid #e2e8f0',
-                                                borderRadius: 10,
-                                                background: imageType === 'eye' ? '#eff6ff' : 'white',
-                                                color: imageType === 'eye' ? '#3b82f6' : '#64748b',
-                                                fontWeight: 600,
-                                                fontSize: '0.9rem',
-                                                cursor: 'pointer',
-                                                transition: 'all 0.2s ease',
-                                                fontFamily: 'inherit'
-                                            }}
-                                        >
-                                            <Eye size={18} />
-                                            Eye
-                                        </button>
-                                    </div>
-                                </div>
-
                                 {/* Upload Drop Zone */}
                                 <div
                                     style={{
@@ -629,8 +576,7 @@ export default function DiagnosisPanel() {
                                         textAlign: 'center',
                                         cursor: 'pointer',
                                         background: '#f8fafc',
-                                        transition: 'all 0.2s ease',
-                                        marginTop: 'var(--space-2)'
+                                        transition: 'all 0.2s ease'
                                     }}
                                     onClick={() => document.getElementById('image-upload').click()}
                                     onMouseEnter={e => {
@@ -659,10 +605,10 @@ export default function DiagnosisPanel() {
                                         <div>
                                             <Upload size={36} style={{ color: '#94a3b8', marginBottom: 8 }} />
                                             <p style={{ margin: 0, color: '#475569', fontWeight: 500, fontSize: '0.95rem' }}>
-                                                Drop {imageType} images here or click to upload
+                                                Drop clinical images here or click to upload
                                             </p>
                                             <p style={{ margin: '4px 0 0 0', fontSize: 'var(--font-size-sm)', color: '#94a3b8' }}>
-                                                AI will analyze for conditions
+                                                Trained veterinary disease detection model
                                             </p>
                                         </div>
                                     )}
@@ -711,17 +657,40 @@ export default function DiagnosisPanel() {
                                         </div>
 
                                         {imageAnalysis && (
-                                            <div className="alert alert-success" style={{ marginTop: 'var(--space-3)' }}>
-                                                <CheckCircle size={18} />
-                                                <div>
-                                                    <strong>Image Analysis Complete</strong>
-                                                    <div style={{ fontSize: 'var(--font-size-sm)', marginTop: 'var(--space-1)' }}>
-                                                        Detected: {imageAnalysis.detected_features?.slice(0, 3).join(', ') || 'No specific features'}
-                                                    </div>
-                                                    {imageAnalysis.suggested_conditions?.length > 0 && (
-                                                        <div style={{ fontSize: 'var(--font-size-sm)', marginTop: 'var(--space-1)' }}>
-                                                            Possible conditions: {imageAnalysis.suggested_conditions.slice(0, 2).map(c => c.condition?.replace(/_/g, ' ')).join(', ')}
+                                            <div style={{
+                                                marginTop: 'var(--space-4)',
+                                                border: '1px solid var(--color-success-200)',
+                                                borderRadius: 'var(--radius)',
+                                                overflow: 'hidden'
+                                            }}>
+                                                <div style={{
+                                                    padding: 'var(--space-3) var(--space-4)',
+                                                    background: 'linear-gradient(135deg, #065f46, #047857)',
+                                                    color: 'white',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: 'var(--space-2)'
+                                                }}>
+                                                    <CheckCircle size={18} />
+                                                    <strong>AI Disease Detection Result</strong>
+                                                </div>
+                                                <div style={{ padding: 'var(--space-4)', textAlign: 'center' }}>
+                                                    {imageAnalysis.top_prediction ? (
+                                                        <div style={{
+                                                            fontSize: '1.25rem',
+                                                            fontWeight: 700,
+                                                            color: '#065f46',
+                                                            textTransform: 'capitalize',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            gap: '8px'
+                                                        }}>
+                                                            <Target size={20} />
+                                                            Predicted Disease: {imageAnalysis.top_prediction.disease?.replace(/_/g, ' ')}
                                                         </div>
+                                                    ) : (
+                                                        <div style={{ color: 'var(--color-gray-500)' }}>No clear prediction found</div>
                                                     )}
                                                 </div>
                                             </div>

@@ -86,6 +86,7 @@ export const diagnosisAPI = {
 
 export const treatmentAPI = {
     recommend: (data) => api.post('/treatment/recommend', data),
+    lookup: (diseaseName) => api.get(`/treatment/lookup/${encodeURIComponent(diseaseName)}`),
     calculateDosage: (data) => api.post('/treatment/dosage', data),
     get: (id) => api.get(`/treatment/${id}`),
     approve: (id) => api.post(`/treatment/${id}/approve`),

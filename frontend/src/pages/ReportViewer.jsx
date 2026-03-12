@@ -144,19 +144,7 @@ export default function ReportViewer() {
                     font-weight: 500;
                     color: var(--color-gray-900);
                 }
-                .confidence-bar-bg {
-                    height: 8px;
-                    background: var(--color-gray-200);
-                    border-radius: var(--radius-full);
-                    margin-top: var(--space-2);
-                    overflow: hidden;
-                }
-                .confidence-bar-fill {
-                    height: 100%;
-                    background: var(--color-primary-500);
-                    border-radius: var(--radius-full);
-                    transition: width 1s ease-out;
-                }
+
                 `}
             </style>
 
@@ -265,22 +253,6 @@ export default function ReportViewer() {
                                 {report.assessment.primary_diagnosis}
                             </div>
 
-                            {report.assessment.ai_confidence && (
-                                <div style={{ marginTop: 'var(--space-4)', maxWidth: '300px' }}>
-                                    <div className="flex justify-between items-center">
-                                        <span style={{ fontSize: 'var(--font-size-xs)', fontWeight: 600, color: 'var(--color-gray-600)' }}>AI Confidence</span>
-                                        <span style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, color: 'var(--color-primary-600)' }}>
-                                            {Math.round(report.assessment.ai_confidence * 100)}%
-                                        </span>
-                                    </div>
-                                    <div className="confidence-bar-bg">
-                                        <div
-                                            className="confidence-bar-fill"
-                                            style={{ width: `${report.assessment.ai_confidence * 100}%` }}
-                                        />
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </div>
 
@@ -300,12 +272,16 @@ export default function ReportViewer() {
                                         </div>
                                         <div>
                                             <div style={{ fontWeight: 700, color: 'var(--color-gray-900)' }}>{med.name}</div>
-                                            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginTop: '2px' }}>
-                                                {med.dosage?.instructions}
-                                            </div>
-                                            <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--color-gray-400)', textTransform: 'uppercase', marginTop: '4px' }}>
-                                                {med.dosage?.dose_mg}mg • {med.dosage?.duration_days} days
-                                            </div>
+                                            {med.dosage?.instructions && (
+                                                <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-gray-600)', marginTop: '2px' }}>
+                                                    {med.dosage.instructions}
+                                                </div>
+                                            )}
+                                            {(med.dosage?.dose_mg || med.dosage?.duration_days) && (
+                                                <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--color-gray-400)', textTransform: 'uppercase', marginTop: '4px' }}>
+                                                    {med.dosage?.dose_mg ? `${med.dosage.dose_mg}mg` : ''}{med.dosage?.dose_mg && med.dosage?.duration_days ? ' • ' : ''}{med.dosage?.duration_days ? `${med.dosage.duration_days} days` : ''}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 ))}

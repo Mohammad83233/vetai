@@ -1,0 +1,708 @@
+{
+    "Actinobacillus Pleuropneumonia": {
+        "medicines": [
+            "Tulathromycin",
+            "Florfenicol",
+            "Ceftiofur"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Isolate affected pigs immediately"
+    },
+    "Actinobacillus Suis": {
+        "medicines": [
+            "Penicillin",
+            "Ampicillin",
+            "Trimethoprim"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Early treatment critical"
+    },
+    "African Swine Fever": {
+        "medicines": [
+            "Supportive fluids",
+            "Antipyretics for fever",
+            "Antibiotics for secondary infections"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "REPORTABLE DISEASE - Contact authorities immediately"
+    },
+    "Porcine Circovirus Disease": {
+        "medicines": [
+            "Supportive therapy",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Vaccination recommended for prevention"
+    },
+    "Porcine Epidemic Diarrhea": {
+        "medicines": [
+            "Oral electrolytes",
+            "Antibiotics for secondary infection"
+        ],
+        "treatment_duration": "5-10 days",
+        "notes": "Keep piglets warm and hydrated"
+    },
+    "Porcine Reproductive and Respiratory Syndrome": {
+        "medicines": [
+            "Tulathromycin",
+            "Doxycycline",
+            "Supportive care"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Vaccination available for prevention"
+    },
+    "Swine Dysentery": {
+        "medicines": [
+            "Tiamulin",
+            "Lincomycin",
+            "Tylosin"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Improve sanitation in pen"
+    },
+    "Swine Erysipelas": {
+        "medicines": [
+            "Penicillin G",
+            "Amoxicillin",
+            "Tetracycline"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Vaccination highly effective"
+    },
+    "Swine Fever": {
+        "medicines": [
+            "Supportive fluids",
+            "Antipyretics",
+            "Antibiotics for secondary infections"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "REPORTABLE DISEASE - Notify authorities immediately"
+    },
+    "Swine Influenza": {
+        "medicines": [
+            "NSAIDs",
+            "Supportive fluids",
+            "Antibiotics for secondary infection"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Rest and warmth essential"
+    },
+    "Bovine Coccidiosis": {
+        "medicines": [
+            "Amprolium",
+            "Sulfonamides",
+            "Toltrazuril"
+        ],
+        "treatment_duration": "5 days",
+        "notes": "Improve hygiene in housing"
+    },
+    "Bovine Influenza": {
+        "medicines": [
+            "Flunixin Meglumine",
+            "Tulathromycin",
+            "Supportive fluids"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Reduce stress and ensure good ventilation"
+    },
+    "Bovine Johne's Disease": {
+        "medicines": [
+            "Isoniazid",
+            "Supportive nutrition supplements",
+            "Probiotics",
+            "Anti-diarrheal medication"
+        ],
+        "treatment_duration": "60-90 days",
+        "notes": "High energy diet and mineral supplements help - recheck every 30 days"
+    },
+    "Bovine Leukemia Virus": {
+        "medicines": [
+            "Supportive care",
+            "Immune boosters",
+            "Antibiotics for secondary infections",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "30-60 days",
+        "notes": "Regular monitoring every 30 days"
+    },
+    "Bovine Mastitis": {
+        "medicines": [
+            "Intramammary Penicillin",
+            "Cephalosporins",
+            "Oxytocin"
+        ],
+        "treatment_duration": "3-5 days",
+        "notes": "Milk out affected quarter frequently"
+    },
+    "Bovine Parainfluenza": {
+        "medicines": [
+            "Tulathromycin",
+            "Florfenicol",
+            "NSAIDs"
+        ],
+        "treatment_duration": "5 days",
+        "notes": "Vaccination available"
+    },
+    "Bovine Pneumonia": {
+        "medicines": [
+            "Florfenicol",
+            "Enrofloxacin",
+            "Dexamethasone"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Ensure good ventilation in housing"
+    },
+    "Bovine Respiratory Syncytial Virus": {
+        "medicines": [
+            "Supportive care",
+            "Bronchodilators",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Vaccination recommended"
+    },
+    "Bovine Tuberculosis": {
+        "medicines": [
+            "Isoniazid",
+            "Rifampicin",
+            "Supportive nutrition"
+        ],
+        "treatment_duration": "180-365 days",
+        "notes": "REPORTABLE DISEASE - Only treated in rare valuable animals"
+    },
+    "Bovine Viral Diarrhea": {
+        "medicines": [
+            "Supportive fluids",
+            "Electrolyte therapy",
+            "Antibiotics for secondary infections",
+            "NSAIDs"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Vaccination highly effective for prevention"
+    },
+    "Foot and Mouth Disease": {
+        "medicines": [
+            "Antiseptic foot baths",
+            "Supportive fluids",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "14 days",
+        "notes": "REPORTABLE DISEASE - Contact authorities immediately"
+    },
+    "Canine Distemper": {
+        "medicines": [
+            "Supportive care",
+            "Anti-seizure medication",
+            "IV fluids"
+        ],
+        "treatment_duration": "14-28 days",
+        "notes": "Vaccination is best prevention"
+    },
+    "Canine Heartworm Disease": {
+        "medicines": [
+            "Melarsomine",
+            "Doxycycline",
+            "Ivermectin"
+        ],
+        "treatment_duration": "60-90 days",
+        "notes": "Strict rest required - recheck every 30 days"
+    },
+    "Canine Hepatitis": {
+        "medicines": [
+            "IV fluids",
+            "Liver support supplements",
+            "Antibiotics"
+        ],
+        "treatment_duration": "14-21 days",
+        "notes": "Monitor liver enzymes every 14 days"
+    },
+    "Canine Infectious Hepatitis": {
+        "medicines": [
+            "IV fluids",
+            "Antibiotics",
+            "Vitamin C"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Vaccination highly effective"
+    },
+    "Canine Influenza": {
+        "medicines": [
+            "Antibiotics for secondary infection",
+            "NSAIDs",
+            "Supportive fluids"
+        ],
+        "treatment_duration": "5-10 days",
+        "notes": "Isolate from other dogs"
+    },
+    "Canine Leptospirosis": {
+        "medicines": [
+            "Penicillin",
+            "Doxycycline",
+            "IV fluids"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Zoonotic disease - handle with care"
+    },
+    "Canine Parvovirus": {
+        "medicines": [
+            "IV fluids",
+            "Anti-nausea medication",
+            "Antibiotics"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Highly contagious - strict isolation required"
+    },
+    "Kennel Cough": {
+        "medicines": [
+            "Doxycycline",
+            "Cough suppressants",
+            "Bronchodilators"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Vaccination available"
+    },
+    "Feline Asthma": {
+        "medicines": [
+            "Prednisolone",
+            "Bronchodilators",
+            "Cyclosporine"
+        ],
+        "treatment_duration": "21-30 days",
+        "notes": "Avoid dust and smoke exposure"
+    },
+    "Feline Calicivirus": {
+        "medicines": [
+            "Supportive care",
+            "Antibiotics for secondary infection",
+            "Antiviral drugs"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Vaccination available"
+    },
+    "Feline Chlamydia": {
+        "medicines": [
+            "Doxycycline",
+            "Azithromycin",
+            "Eye drops"
+        ],
+        "treatment_duration": "28-42 days",
+        "notes": "Treat all cats in household"
+    },
+    "Feline Coronavirus": {
+        "medicines": [
+            "GS-441524 antiviral",
+            "Supportive care",
+            "Prednisolone"
+        ],
+        "treatment_duration": "84 days",
+        "notes": "Early treatment improves prognosis"
+    },
+    "Feline Herpesvirus": {
+        "medicines": [
+            "L-Lysine",
+            "Famciclovir",
+            "Antiviral eye drops"
+        ],
+        "treatment_duration": "14-21 days",
+        "notes": "Stress triggers flare-ups - keep environment calm"
+    },
+    "Feline Immunodeficiency Virus": {
+        "medicines": [
+            "Zidovudine (AZT)",
+            "Interferon omega",
+            "Antibiotics for infections",
+            "Immune modulators"
+        ],
+        "treatment_duration": "30-60 days",
+        "notes": "Keep indoors to prevent spread - regular checkups every 90 days"
+    },
+    "Feline Infectious Peritonitis": {
+        "medicines": [
+            "GS-441524",
+            "Prednisolone",
+            "Supportive care"
+        ],
+        "treatment_duration": "84 days",
+        "notes": "New antivirals show promising results"
+    },
+    "Feline Leukemia": {
+        "medicines": [
+            "Supportive care",
+            "Chemotherapy",
+            "Interferon"
+        ],
+        "treatment_duration": "30-45 days",
+        "notes": "Vaccination available - monthly monitoring required"
+    },
+    "Feline Panleukopenia": {
+        "medicines": [
+            "IV fluids",
+            "Antibiotics",
+            "Anti-nausea medication"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Highly contagious - strict isolation"
+    },
+    "Feline Renal Disease": {
+        "medicines": [
+            "IV fluids",
+            "Phosphate binders",
+            "ACE inhibitors"
+        ],
+        "treatment_duration": "14-21 days",
+        "notes": "Low phosphorus diet essential - recheck every 30 days"
+    },
+    "Feline Rhinotracheitis": {
+        "medicines": [
+            "Famciclovir",
+            "Supportive care",
+            "L-Lysine"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Vaccination available"
+    },
+    "Equine Arthritis": {
+        "medicines": [
+            "Phenylbutazone",
+            "Hyaluronic acid injections",
+            "Joint supplements"
+        ],
+        "treatment_duration": "30-45 days",
+        "notes": "Controlled exercise recommended - recheck every 60 days"
+    },
+    "Equine Cushing's Disease": {
+        "medicines": [
+            "Pergolide mesylate",
+            "Supportive care"
+        ],
+        "treatment_duration": "30-60 days",
+        "notes": "Regular monitoring of ACTH levels every 90 days"
+    },
+    "Equine Encephalitis": {
+        "medicines": [
+            "Supportive care",
+            "Anti-inflammatory drugs",
+            "IV fluids"
+        ],
+        "treatment_duration": "14-28 days",
+        "notes": "Vaccination highly effective"
+    },
+    "Equine Herpesvirus": {
+        "medicines": [
+            "Valacyclovir",
+            "NSAIDs",
+            "Supportive care"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Strict quarantine required"
+    },
+    "Equine Infectious Anemia": {
+        "medicines": [
+            "Supportive fluids",
+            "Iron supplements",
+            "Vitamin B12 injections",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "30-45 days",
+        "notes": "REPORTABLE DISEASE - Coggins test required - recheck every 30 days"
+    },
+    "Equine Influenza": {
+        "medicines": [
+            "NSAIDs",
+            "Rest",
+            "Supportive care"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Vaccination recommended every 6 months"
+    },
+    "Equine Laminitis": {
+        "medicines": [
+            "Phenylbutazone",
+            "Acepromazine",
+            "Hoof support pads"
+        ],
+        "treatment_duration": "30-90 days",
+        "notes": "Strict diet and stall rest required throughout treatment"
+    },
+    "Equine Leptospirosis": {
+        "medicines": [
+            "Penicillin",
+            "Oxytetracycline",
+            "Supportive fluids"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Zoonotic disease - handle with gloves"
+    },
+    "Equine Lyme Disease": {
+        "medicines": [
+            "Doxycycline",
+            "Minocycline",
+            "Ceftiofur"
+        ],
+        "treatment_duration": "30 days",
+        "notes": "Tick control essential for prevention"
+    },
+    "Equine Piroplasmosis": {
+        "medicines": [
+            "Imidocarb dipropionate",
+            "Supportive fluids"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "REPORTABLE DISEASE in some countries"
+    },
+    "Equine Pneumonia": {
+        "medicines": [
+            "Penicillin",
+            "Gentamicin",
+            "NSAIDs"
+        ],
+        "treatment_duration": "14-28 days",
+        "notes": "Rest and good nutrition essential throughout"
+    },
+    "Equine Strangles": {
+        "medicines": [
+            "Penicillin",
+            "Hot packs on abscess",
+            "Supportive care"
+        ],
+        "treatment_duration": "21-42 days",
+        "notes": "Strict quarantine for 28 days minimum"
+    },
+    "Equine West Nile Virus": {
+        "medicines": [
+            "Supportive care",
+            "Anti-inflammatory drugs",
+            "IV fluids"
+        ],
+        "treatment_duration": "14-30 days",
+        "notes": "Vaccination available and highly effective"
+    },
+    "Rabbit Calicivirus": {
+        "medicines": [
+            "Supportive fluids",
+            "Antipyretics",
+            "Liver support supplements",
+            "Vitamin K"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Vaccination essential - supportive care maintains hydration"
+    },
+    "Rabbit Hemorrhagic Disease": {
+        "medicines": [
+            "Supportive fluids",
+            "Vitamin K injections",
+            "Liver protectants",
+            "Antipyretics"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "REPORTABLE DISEASE - Intensive supportive care may improve survival"
+    },
+    "Rabbit Syphilis": {
+        "medicines": [
+            "Penicillin G",
+            "Benzathine penicillin"
+        ],
+        "treatment_duration": "21 days",
+        "notes": "Do not use oral penicillin in rabbits"
+    },
+    "Myxomatosis": {
+        "medicines": [
+            "Supportive fluids",
+            "Antibiotics for secondary infections",
+            "Anti-inflammatory drugs",
+            "Eye drops for conjunctivitis"
+        ],
+        "treatment_duration": "14-21 days",
+        "notes": "Intensive nursing care improves survival chances"
+    },
+    "Snuffles": {
+        "medicines": [
+            "Enrofloxacin",
+            "Trimethoprim-sulfa",
+            "Nasal drops"
+        ],
+        "treatment_duration": "14-30 days",
+        "notes": "May require repeat treatment every 30 days if recurrence"
+    },
+    "Scrapie": {
+        "medicines": [
+            "Supportive nutrition",
+            "Anti-inflammatory drugs",
+            "Pain management",
+            "Vitamin supplements"
+        ],
+        "treatment_duration": "30-45 days",
+        "notes": "REPORTABLE DISEASE - Palliative care focuses on animal comfort"
+    },
+    "Blue Tongue Virus": {
+        "medicines": [
+            "Supportive care",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "14-21 days",
+        "notes": "Vaccination available - insect control important"
+    },
+    "Maedi-Visna": {
+        "medicines": [
+            "Supportive nutrition",
+            "Antibiotics for secondary infections",
+            "Anti-inflammatory drugs",
+            "Vitamin supplements"
+        ],
+        "treatment_duration": "30-60 days",
+        "notes": "Supportive care and good nutrition help manage progression"
+    },
+    "Chlamydia in Sheep": {
+        "medicines": [
+            "Oxytetracycline",
+            "Enrofloxacin"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Vaccination available for abortion prevention"
+    },
+    "Goat Pox": {
+        "medicines": [
+            "Supportive fluids",
+            "Antibiotics for secondary infections",
+            "Antiseptic skin treatment",
+            "Anti-inflammatory drugs"
+        ],
+        "treatment_duration": "14-28 days",
+        "notes": "REPORTABLE DISEASE - Focus on preventing secondary infections"
+    },
+    "Caprine Arthritis": {
+        "medicines": [
+            "NSAIDs",
+            "Joint supplements",
+            "Supportive care"
+        ],
+        "treatment_duration": "30-45 days",
+        "notes": "Symptom management focus - recheck every 45 days"
+    },
+    "Gastroenteritis": {
+        "medicines": [
+            "Metronidazole",
+            "Oral electrolytes",
+            "Probiotics"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Bland diet during recovery"
+    },
+    "Giardiasis": {
+        "medicines": [
+            "Metronidazole",
+            "Fenbendazole",
+            "Probiotics"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Disinfect environment thoroughly"
+    },
+    "Hyperthyroidism": {
+        "medicines": [
+            "Methimazole",
+            "Radioactive iodine",
+            "Carbimazole"
+        ],
+        "treatment_duration": "30-60 days",
+        "notes": "Thyroid level monitoring every 21 days during treatment"
+    },
+    "Inflammatory Bowel Disease": {
+        "medicines": [
+            "Prednisolone",
+            "Metronidazole",
+            "Vitamin B12"
+        ],
+        "treatment_duration": "30-60 days",
+        "notes": "Hypoallergenic diet recommended - recheck every 30 days"
+    },
+    "Intestinal Parasites": {
+        "medicines": [
+            "Fenbendazole",
+            "Pyrantel pamoate",
+            "Ivermectin"
+        ],
+        "treatment_duration": "1-3 days",
+        "notes": "Regular deworming schedule recommended"
+    },
+    "Leptospirosis": {
+        "medicines": [
+            "Penicillin",
+            "Doxycycline",
+            "IV fluids"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Zoonotic disease - use protective gear"
+    },
+    "Lyme Disease": {
+        "medicines": [
+            "Doxycycline",
+            "Amoxicillin",
+            "Azithromycin"
+        ],
+        "treatment_duration": "28-30 days",
+        "notes": "Tick prevention essential"
+    },
+    "Pancreatitis": {
+        "medicines": [
+            "IV fluids",
+            "Pain management",
+            "Anti-nausea medication"
+        ],
+        "treatment_duration": "3-7 days",
+        "notes": "Low fat diet essential"
+    },
+    "Pyometra": {
+        "medicines": [
+            "Emergency spay surgery",
+            "Antibiotics",
+            "IV fluids"
+        ],
+        "treatment_duration": "7-14 days",
+        "notes": "Life threatening - immediate vet attention needed"
+    },
+    "Ringworm": {
+        "medicines": [
+            "Itraconazole",
+            "Terbinafine",
+            "Antifungal shampoo"
+        ],
+        "treatment_duration": "42-56 days",
+        "notes": "Disinfect environment - contagious to humans"
+    },
+    "Salmonellosis": {
+        "medicines": [
+            "Supportive fluids",
+            "Antibiotics if severe",
+            "Probiotics"
+        ],
+        "treatment_duration": "5-7 days",
+        "notes": "Zoonotic disease - strict hygiene required"
+    },
+    "Tick-Borne Disease": {
+        "medicines": [
+            "Doxycycline",
+            "Supportive care",
+            "Tick removal"
+        ],
+        "treatment_duration": "14-28 days",
+        "notes": "Regular tick checks and prevention essential"
+    },
+    "Upper Respiratory Infection": {
+        "medicines": [
+            "Doxycycline",
+            "Amoxicillin",
+            "Supportive care"
+        ],
+        "treatment_duration": "7-10 days",
+        "notes": "Keep warm and well hydrated"
+    },
+    "West Nile Virus": {
+        "medicines": [
+            "Supportive care",
+            "Anti-inflammatory drugs",
+            "IV fluids"
+        ],
+        "treatment_duration": "14-30 days",
+        "notes": "Mosquito control essential for prevention"
+    }
+}

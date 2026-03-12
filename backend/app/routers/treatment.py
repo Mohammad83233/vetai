@@ -17,6 +17,17 @@ from .dependencies import get_current_user, require_doctor
 router = APIRouter(prefix="/treatment", tags=["Treatment & Dosage"])
 
 
+@router.get("/lookup/{disease_name}")
+async def lookup_treatment(disease_name: str):
+    """
+    Look up treatment recommendation from treatment_knowledge.json.
+    Returns medicines list, treatment_duration, and clinical notes
+    for the exact disease name predicted by XGBoost.
+    """
+    from ..services.treatment_service import get_treatment
+    return get_treatment(disease_name)
+
+
 # Demo medication database
 MEDICATION_DATABASE = {
     "amoxicillin": {

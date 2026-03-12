@@ -18,95 +18,349 @@ from ..models.report import (
 from ..models.user import User
 from ..services.clinical_service import ClinicalService
 from ..services.patient_service import PatientService
+from ..services.treatment_service import get_treatment
 from .dependencies import get_current_user, require_doctor
 
 router = APIRouter(prefix="/reports", tags=["SOAP Reports"])
 
 
 async def generate_pdf(report: dict) -> BytesIO:
-    """Generate PDF from SOAP report."""
+    """Generate PDF matching the Clinical Report UI style."""
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import letter
     from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
     from reportlab.lib.units import inch
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+    from reportlab.lib.enums import TA_CENTER, TA_LEFT
+    from reportlab.platypus import (
+        SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
+        HRFlowable
+    )
     
     buffer = BytesIO()
-    doc = SimpleDocTemplate(buffer, pagesize=letter, topMargin=0.5*inch, bottomMargin=0.5*inch)
+    page_w, page_h = letter
+    doc = SimpleDocTemplate(
+        buffer, pagesize=letter,
+        topMargin=0.4*inch, bottomMargin=0.6*inch,
+        leftMargin=0.6*inch, rightMargin=0.6*inch
+    )
     
+    # --- Colour palette matching the UI ---
+    primary_blue = colors.HexColor("#3b5bdb")
+    primary_dark = colors.HexColor("#2b4ac7")
+    gray_50 = colors.HexColor("#f8f9fa")
+    gray_100 = colors.HexColor("#f1f3f5")
+    gray_200 = colors.HexColor("#e9ecef")
+    gray_400 = colors.HexColor("#adb5bd")
+    gray_600 = colors.HexColor("#6c757d")
+    gray_800 = colors.HexColor("#343a40")
+    gray_900 = colors.HexColor("#212529")
+    white = colors.white
+    info_bg = colors.HexColor("#e7f5ff")
+    info_border = colors.HexColor("#74c0fc")
+    pill_bg = colors.HexColor("#dbe4ff")
+    
+    # --- Styles ---
     styles = getSampleStyleSheet()
-    title_style = ParagraphStyle('Title', parent=styles['Heading1'], fontSize=16, spaceAfter=12)
-    heading_style = ParagraphStyle('Heading', parent=styles['Heading2'], fontSize=12, spaceAfter=6, textColor=colors.darkblue)
-    normal_style = styles['Normal']
+    
+    header_title = ParagraphStyle(
+        'HeaderTitle', fontName='Helvetica-Bold', fontSize=22,
+        leading=26, textColor=white, alignment=TA_LEFT
+    )
+    header_sub = ParagraphStyle(
+        'HeaderSub', fontName='Helvetica', fontSize=10,
+        leading=13, textColor=colors.HexColor("#c3cfe2"), alignment=TA_LEFT
+    )
+    status_style = ParagraphStyle(
+        'Status', fontName='Helvetica-Bold', fontSize=8,
+        textColor=white, alignment=TA_CENTER
+    )
+    section_title = ParagraphStyle(
+        'SectionTitle', fontName='Helvetica-Bold', fontSize=10,
+        leading=14, textColor=gray_800, spaceAfter=6,
+        textTransform='uppercase', tracking=0.8
+    )
+    label_style = ParagraphStyle(
+        'Label', fontName='Helvetica-Bold', fontSize=7.5,
+        leading=10, textColor=gray_400, textTransform='uppercase'
+    )
+    value_style = ParagraphStyle(
+        'Value', fontName='Helvetica', fontSize=10,
+        leading=13, textColor=gray_900
+    )
+    diagnosis_name = ParagraphStyle(
+        'DiagName', fontName='Helvetica-Bold', fontSize=16,
+        leading=20, textColor=gray_900
+    )
+    diag_label = ParagraphStyle(
+        'DiagLabel', fontName='Helvetica-Bold', fontSize=7.5,
+        leading=10, textColor=gray_600, textTransform='uppercase'
+    )
+    med_name_style = ParagraphStyle(
+        'MedName', fontName='Helvetica-Bold', fontSize=10,
+        leading=13, textColor=gray_900
+    )
+    med_detail = ParagraphStyle(
+        'MedDetail', fontName='Helvetica', fontSize=9,
+        leading=12, textColor=gray_600
+    )
+    note_title = ParagraphStyle(
+        'NoteTitle', fontName='Helvetica-Bold', fontSize=8,
+        leading=10, textColor=gray_800, textTransform='uppercase'
+    )
+    note_text = ParagraphStyle(
+        'NoteText', fontName='Helvetica', fontSize=9,
+        leading=12, textColor=gray_800
+    )
+    footer_style = ParagraphStyle(
+        'Footer', fontName='Helvetica', fontSize=9,
+        leading=12, textColor=gray_600
+    )
+    footer_bold = ParagraphStyle(
+        'FooterBold', fontName='Helvetica-Bold', fontSize=9,
+        leading=12, textColor=gray_800
+    )
     
     story = []
+    usable = page_w - doc.leftMargin - doc.rightMargin
     
-    # Header
-    story.append(Paragraph(f"<b>VETERINARY CLINICAL REPORT</b>", title_style))
-    story.append(Paragraph(f"VetAI Clinical Decision Support System", normal_style))
-    story.append(Spacer(1, 12))
+    # ═══════════════════════════════════════════
+    # HEADER — blue gradient-style banner
+    # ═══════════════════════════════════════════
+    status_text = report.get("status", "draft").upper()
+    status_color = colors.HexColor("#2ecc71") if status_text == "FINAL" or status_text == "FINALIZED" else colors.HexColor("#f39c12")
     
-    # Patient Info Table
-    patient_data = [
-        ["Patient Name:", report.get("patient_name", "N/A"), "Species:", report.get("species", "N/A")],
-        ["Breed:", report.get("breed", "N/A"), "Weight:", f"{report.get('weight_kg', 'N/A')} kg"],
-        ["Age:", f"{report.get('age_months', 0)} months", "Owner:", report.get("owner_name", "N/A")],
-        ["Doctor:", report.get("doctor_name", "N/A"), "Date:", str(report.get("created_at", "N/A"))[:10]]
-    ]
+    header_data = [[
+        Paragraph("🩺  <b>Clinical Report</b>", header_title),
+        Paragraph(status_text, status_style)
+    ]]
     
-    patient_table = Table(patient_data, colWidths=[1.2*inch, 2*inch, 1*inch, 2*inch])
-    patient_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (0, -1), colors.lightgrey),
-        ('BACKGROUND', (2, 0), (2, -1), colors.lightgrey),
-        ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+    header_tbl = Table(header_data, colWidths=[usable - 1.2*inch, 1.2*inch])
+    header_tbl.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), primary_blue),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('TOPPADDING', (0, 0), (-1, -1), 18),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ('LEFTPADDING', (0, 0), (0, 0), 20),
+        ('RIGHTPADDING', (-1, -1), (-1, -1), 20),
     ]))
-    story.append(patient_table)
+    story.append(header_tbl)
+    
+    # Sub-header row
+    sub_data = [[Paragraph("VetAI Clinical Decision Support System", header_sub), ""]]
+    sub_tbl = Table(sub_data, colWidths=[usable, 0])
+    sub_tbl.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), primary_dark),
+        ('TOPPADDING', (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 12),
+        ('LEFTPADDING', (0, 0), (0, 0), 20),
+    ]))
+    story.append(sub_tbl)
     story.append(Spacer(1, 20))
     
-    # SOAP Sections
-    subjective = report.get("subjective", {})
-    story.append(Paragraph("<b>S - SUBJECTIVE</b>", heading_style))
-    story.append(Paragraph(f"<b>Chief Complaint:</b> {subjective.get('chief_complaint', 'N/A')}", normal_style))
-    if subjective.get('history_of_present_illness'):
-        story.append(Paragraph(f"<b>History:</b> {subjective.get('history_of_present_illness')}", normal_style))
-    if subjective.get('owner_observations'):
-        story.append(Paragraph(f"<b>Owner Observations:</b> {', '.join(subjective.get('owner_observations', []))}", normal_style))
-    story.append(Spacer(1, 12))
+    # ═══════════════════════════════════════════
+    # SECTION: Patient Information
+    # ═══════════════════════════════════════════
+    story.append(Paragraph("👤  PATIENT INFORMATION", section_title))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=gray_200, spaceAfter=10))
     
-    objective = report.get("objective", {})
-    story.append(Paragraph("<b>O - OBJECTIVE</b>", heading_style))
-    vitals = objective.get('vital_signs', {})
-    if vitals:
-        vitals_text = ", ".join([f"{k}: {v}" for k, v in vitals.items() if v])
-        story.append(Paragraph(f"<b>Vital Signs:</b> {vitals_text}", normal_style))
-    if objective.get('physical_exam_findings'):
-        story.append(Paragraph(f"<b>Physical Exam:</b> {', '.join(objective.get('physical_exam_findings', []))}", normal_style))
-    story.append(Spacer(1, 12))
+    breed = report.get("breed", "")
+    species = report.get("species", "N/A")
+    species_breed = f"{species} ({breed})" if breed else species
+    date_str = str(report.get("created_at", ""))[:10]
     
+    # Patient info as a 3-column grid
+    col_w = usable / 3
+    patient_grid = [
+        [
+            [Paragraph("PATIENT NAME", label_style), Paragraph(report.get("patient_name", "N/A"), value_style)],
+            [Paragraph("SPECIES / BREED", label_style), Paragraph(species_breed, value_style)],
+            [Paragraph("AGE / WEIGHT", label_style), Paragraph(f"{report.get('age_months', 0)}m / {report.get('weight_kg', 'N/A')}kg", value_style)],
+        ],
+        [
+            [Paragraph("OWNER", label_style), Paragraph(report.get("owner_name", "N/A"), value_style)],
+            [Paragraph("DATE ISSUED", label_style), Paragraph(date_str, value_style)],
+            [],
+        ]
+    ]
+    
+    # Flatten inner lists into Table cells
+    def _cell(items):
+        if not items:
+            return Paragraph("", value_style)
+        tbl = Table([[i] for i in items], colWidths=[col_w - 12])
+        tbl.setStyle(TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
+        ]))
+        return tbl
+    
+    rows = [[_cell(c) for c in row] for row in patient_grid]
+    info_table = Table(rows, colWidths=[col_w]*3)
+    info_table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('TOPPADDING', (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 10),
+        ('LEFTPADDING', (0, 0), (-1, -1), 6),
+    ]))
+    story.append(info_table)
+    story.append(Spacer(1, 16))
+    
+    # ═══════════════════════════════════════════
+    # SECTION: Diagnosed Diseases
+    # ═══════════════════════════════════════════
     assessment = report.get("assessment", {})
-    story.append(Paragraph("<b>A - ASSESSMENT</b>", heading_style))
-    story.append(Paragraph(f"<b>Primary Diagnosis:</b> {assessment.get('primary_diagnosis', 'N/A')}", normal_style))
-    if assessment.get('differential_diagnoses'):
-        story.append(Paragraph(f"<b>Differentials:</b> {', '.join(assessment.get('differential_diagnoses', []))}", normal_style))
-    if assessment.get('prognosis'):
-        story.append(Paragraph(f"<b>Prognosis:</b> {assessment.get('prognosis')}", normal_style))
-    story.append(Spacer(1, 12))
+    story.append(Paragraph("⚕  DIAGNOSED DISEASES", section_title))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=gray_200, spaceAfter=10))
     
+    # Diagnosis card
+    diag_content = [
+        [Paragraph("PRIMARY DIAGNOSIS", diag_label)],
+        [Spacer(1, 4)],
+        [Paragraph(assessment.get("primary_diagnosis", "Pending"), diagnosis_name)],
+    ]
+    diag_inner = Table(diag_content, colWidths=[usable - 40])
+    diag_inner.setStyle(TableStyle([
+        ('LEFTPADDING', (0, 0), (-1, -1), 0),
+        ('TOPPADDING', (0, 0), (-1, -1), 0),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+    ]))
+    
+    diag_card = Table([[diag_inner]], colWidths=[usable - 12])
+    diag_card.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), gray_50),
+        ('BOX', (0, 0), (-1, -1), 0.75, gray_200),
+        ('ROUNDEDCORNERS', [6, 6, 6, 6]),
+        ('TOPPADDING', (0, 0), (-1, -1), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 14),
+        ('LEFTPADDING', (0, 0), (-1, -1), 16),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 16),
+    ]))
+    story.append(diag_card)
+    story.append(Spacer(1, 20))
+    
+    # ═══════════════════════════════════════════
+    # SECTION: Treatment Plan
+    # ═══════════════════════════════════════════
     plan = report.get("plan", {})
-    story.append(Paragraph("<b>P - PLAN</b>", heading_style))
-    if plan.get('medications'):
-        story.append(Paragraph("<b>Medications:</b>", normal_style))
-        for med in plan.get('medications', []):
-            med_name = med.get('name', 'Unknown')
-            dosage = med.get('dosage', {})
-            story.append(Paragraph(f"  • {med_name}: {dosage.get('instructions', 'As directed')}", normal_style))
-    if plan.get('dietary_recommendations'):
-        story.append(Paragraph(f"<b>Diet:</b> {plan.get('dietary_recommendations')}", normal_style))
-    if plan.get('follow_up_appointments'):
-        story.append(Paragraph(f"<b>Follow-up:</b> {', '.join(plan.get('follow_up_appointments', []))}", normal_style))
-    if plan.get('emergency_instructions'):
-        story.append(Paragraph(f"<b>Emergency:</b> {plan.get('emergency_instructions')}", normal_style))
+    story.append(Paragraph("💊  TREATMENT PLAN", section_title))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=gray_200, spaceAfter=10))
+    
+    medications = plan.get("medications", [])
+    if medications:
+        for med in medications:
+            med_n = med.get("name", "Unknown")
+            dosage = med.get("dosage", {})
+            instructions = dosage.get("instructions") or None
+            
+            # Build detail line
+            dose_parts = []
+            if dosage.get("dose_mg"):
+                dose_parts.append(f"{dosage['dose_mg']}mg")
+            if dosage.get("duration_days"):
+                dose_parts.append(f"{dosage['duration_days']} days")
+            dose_line = " • ".join(dose_parts)
+            
+            # Pill icon cell + text cell
+            pill_icon = Table([["💊"]], colWidths=[32], rowHeights=[32])
+            pill_icon.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, -1), pill_bg),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('ROUNDEDCORNERS', [16, 16, 16, 16]),
+                ('TOPPADDING', (0, 0), (-1, -1), 4),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ]))
+            
+            text_parts = [[Paragraph(med_n, med_name_style)]]
+            if instructions:
+                text_parts.append([Paragraph(instructions, med_detail)])
+            if dose_line:
+                text_parts.append([Paragraph(dose_line, ParagraphStyle(
+                    'DoseLine', fontName='Helvetica-Bold', fontSize=7.5,
+                    leading=10, textColor=gray_400, textTransform='uppercase'
+                ))])
+            
+            text_tbl = Table(text_parts, colWidths=[usable - 70])
+            text_tbl.setStyle(TableStyle([
+                ('LEFTPADDING', (0, 0), (-1, -1), 0),
+                ('TOPPADDING', (0, 0), (-1, -1), 0),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 1),
+            ]))
+            
+            med_row = Table([[pill_icon, text_tbl]], colWidths=[42, usable - 54])
+            med_row.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('BOX', (0, 0), (-1, -1), 0.5, gray_200),
+                ('ROUNDEDCORNERS', [4, 4, 4, 4]),
+                ('TOPPADDING', (0, 0), (-1, -1), 8),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+                ('LEFTPADDING', (0, 0), (0, 0), 10),
+                ('LEFTPADDING', (1, 0), (1, 0), 8),
+                ('RIGHTPADDING', (-1, -1), (-1, -1), 10),
+            ]))
+            story.append(med_row)
+            story.append(Spacer(1, 6))
+    else:
+        story.append(Paragraph("<i>No medications prescribed.</i>", ParagraphStyle(
+            'NoMeds', fontName='Helvetica-Oblique', fontSize=10, textColor=gray_400
+        )))
+    
+    # Dietary / Notes box
+    if plan.get("dietary_recommendations"):
+        story.append(Spacer(1, 10))
+        note_content = [
+            [Paragraph("NOTES", note_title)],
+            [Spacer(1, 2)],
+            [Paragraph(plan["dietary_recommendations"], note_text)],
+        ]
+        note_inner = Table(note_content, colWidths=[usable - 44])
+        note_inner.setStyle(TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 1),
+        ]))
+        note_box = Table([[note_inner]], colWidths=[usable - 16])
+        note_box.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), info_bg),
+            ('BOX', (0, 0), (-1, -1), 0.75, info_border),
+            ('ROUNDEDCORNERS', [6, 6, 6, 6]),
+            ('TOPPADDING', (0, 0), (-1, -1), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 10),
+            ('LEFTPADDING', (0, 0), (-1, -1), 14),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 14),
+        ]))
+        story.append(note_box)
+    
+    # Follow-up
+    if plan.get("follow_up_appointments"):
+        story.append(Spacer(1, 10))
+        follow_up_text = ", ".join(plan["follow_up_appointments"])
+        story.append(Paragraph(f"<b>Follow-up:</b> {follow_up_text}", med_detail))
+    
+    story.append(Spacer(1, 24))
+    
+    # ═══════════════════════════════════════════
+    # FOOTER
+    # ═══════════════════════════════════════════
+    story.append(HRFlowable(width="100%", thickness=0.75, color=gray_200, spaceAfter=8))
+    
+    footer_data = [[
+        Paragraph(f"<b>Doctor:</b> {report.get('doctor_name', 'N/A')}", footer_style),
+        Paragraph(f"<b>Clinic:</b> {report.get('clinic_name', 'VetAI Clinic')}", footer_style),
+    ]]
+    footer_tbl = Table(footer_data, colWidths=[usable/2, usable/2])
+    footer_tbl.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (0, 0), 'LEFT'),
+        ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
+        ('BACKGROUND', (0, 0), (-1, -1), gray_50),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+        ('LEFTPADDING', (0, 0), (0, 0), 12),
+        ('RIGHTPADDING', (-1, -1), (-1, -1), 12),
+    ]))
+    story.append(footer_tbl)
     
     # Build PDF
     doc.build(story)
@@ -176,22 +430,46 @@ async def generate_report(
         image_references=[img.image_id for img in (clinical_input.images or [])]
     )
     
+    primary_disease = diagnosis.get("predictions", [{}])[0].get("disease_name", "Pending") if diagnosis else "Pending evaluation"
+    
     assessment = AssessmentSection(
-        primary_diagnosis=diagnosis.get("predictions", [{}])[0].get("disease_name", "Pending") if diagnosis else "Pending evaluation",
+        primary_diagnosis=primary_disease,
         differential_diagnoses=[p.get("disease_name") for p in diagnosis.get("predictions", [])[1:4]] if diagnosis else [],
         ai_predictions=diagnosis.get("predictions", [])[:3] if diagnosis else None,
-        ai_confidence=diagnosis.get("confidence_score") if diagnosis else None,
+        ai_confidence=None,
         prognosis="Good with appropriate treatment" if diagnosis else "Pending evaluation"
     )
     
-    plan = PlanSection(
-        medications=treatment.get("medications", []) if treatment else [],
-        dietary_recommendations=treatment.get("dietary_recommendations") if treatment else None,
-        activity_restrictions=treatment.get("activity_restrictions") if treatment else None,
-        follow_up_appointments=treatment.get("follow_up_schedule", []) if treatment else ["Schedule follow-up as needed"],
-        monitoring_instructions=treatment.get("monitoring_instructions") if treatment else None,
-        emergency_instructions=treatment.get("emergency_instructions") if treatment else "Contact clinic if symptoms worsen"
-    )
+    # Build plan: use MongoDB treatment if available, otherwise look up treatment KB
+    if treatment:
+        plan = PlanSection(
+            medications=treatment.get("medications", []),
+            dietary_recommendations=treatment.get("dietary_recommendations"),
+            activity_restrictions=treatment.get("activity_restrictions"),
+            follow_up_appointments=treatment.get("follow_up_schedule", []),
+            monitoring_instructions=treatment.get("monitoring_instructions"),
+            emergency_instructions=treatment.get("emergency_instructions") or "Contact clinic if symptoms worsen"
+        )
+    else:
+        # Look up treatment knowledge base by disease name
+        kb_treatment = get_treatment(primary_disease)
+        if kb_treatment.get("found"):
+            plan_medications = [
+                {"name": med, "dosage": {"instructions": None, "dose_mg": None, "duration_days": None}}
+                for med in kb_treatment.get("medicines", [])
+            ]
+            plan = PlanSection(
+                medications=plan_medications,
+                dietary_recommendations=kb_treatment.get("notes"),
+                follow_up_appointments=[f"Follow-up after {kb_treatment.get('treatment_duration', 'as needed')}"],
+                emergency_instructions="Contact clinic if symptoms worsen"
+            )
+        else:
+            plan = PlanSection(
+                medications=[],
+                follow_up_appointments=["Schedule follow-up as needed"],
+                emergency_instructions="Contact clinic if symptoms worsen"
+            )
     
     # Get doctor name
     users = Database.get_collection("users")

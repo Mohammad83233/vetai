@@ -93,9 +93,14 @@ export default function DiagnosisPanel() {
         }
     })
 
-    // Treatment mutation — lookup from treatment_knowledge.json
+    // Treatment mutation — lookup from treatment knowledge base (text or image)
     const treatmentMutation = useMutation({
-        mutationFn: (diseaseName) => treatmentAPI.lookup(diseaseName),
+        mutationFn: ({ diseaseName, source }) => {
+            if (source === 'image') {
+                return treatmentAPI.imageLookup(diseaseName)
+            }
+            return treatmentAPI.lookup(diseaseName)
+        },
         onSuccess: (res) => {
             setTreatmentPlan(res.data)
             setActiveTab('treatment')
@@ -191,10 +196,17 @@ export default function DiagnosisPanel() {
 
 
     const handleGetTreatment = () => {
+        // Check for image-based disease first
+        if (imageAnalysis?.top_prediction?.disease) {
+            const imageDisease = imageAnalysis.top_prediction.disease
+            treatmentMutation.mutate({ diseaseName: imageDisease, source: 'image' })
+            return
+        }
+        // Fall back to text-based diagnosis
         if (!diagnosisResult) return
         const disease = finalDiagnosis || diagnosisResult.predictions?.[0]?.disease_name
         if (!disease) return
-        treatmentMutation.mutate(disease)
+        treatmentMutation.mutate({ diseaseName: disease, source: 'text' })
     }
 
     const handleGenerateReport = () => {
@@ -204,6 +216,7 @@ export default function DiagnosisPanel() {
             clinical_record_id: recordId,
             diagnosis_id: diagnosisResult?.id || null,
             treatment_id: treatmentPlan?.id || null,
+            image_disease_name: imageAnalysis?.top_prediction?.disease || null,
             auto_generate: true
         })
     }
@@ -541,22 +554,24 @@ export default function DiagnosisPanel() {
                                     </div>
                                 )}
 
-                                {/* Get AI Diagnosis Button (image-based) */}
-                                <button
-                                    className="btn btn-primary btn-lg"
-                                    style={{ width: '100%', marginTop: 'var(--space-6)' }}
-                                    onClick={handleDiagnose}
-                                    disabled={!patient || !symptoms.trim() || diagnosisMutation.isPending}
-                                >
-                                    {diagnosisMutation.isPending ? (
-                                        <span className="loading-spinner" style={{ width: 18, height: 18 }}></span>
-                                    ) : (
-                                        <>
-                                            <Brain size={18} />
-                                            Get AI Diagnosis
-                                        </>
-                                    )}
-                                </button>
+                                {/* Get Treatment Plan Button (image-based) */}
+                                {imageAnalysis?.top_prediction && (
+                                    <button
+                                        className="btn btn-success btn-lg"
+                                        style={{ width: '100%', marginTop: 'var(--space-4)' }}
+                                        onClick={handleGetTreatment}
+                                        disabled={treatmentMutation.isPending}
+                                    >
+                                        {treatmentMutation.isPending ? (
+                                            <span className="loading-spinner" style={{ width: 18, height: 18 }}></span>
+                                        ) : (
+                                            <>
+                                                <Pill size={18} />
+                                                Get Treatment for {imageAnalysis.top_prediction.disease?.replace(/_/g, ' ')}
+                                            </>
+                                        )}
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}

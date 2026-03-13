@@ -19,25 +19,26 @@
     },
     "African Swine Fever": {
         "medicines": [
-            "Supportive fluids",
-            "Antipyretics for fever",
-            "Antibiotics for secondary infections"
+            "Ringer's Lactate",
+            "Paracetamol",
+            "Enrofloxacin"
         ],
         "treatment_duration": "7-14 days",
         "notes": "REPORTABLE DISEASE - Contact authorities immediately"
     },
     "Porcine Circovirus Disease": {
         "medicines": [
-            "Supportive therapy",
-            "Anti-inflammatory drugs"
+            "Meloxicam",
+            "Dexamethasone"
         ],
         "treatment_duration": "7-14 days",
         "notes": "Vaccination recommended for prevention"
     },
     "Porcine Epidemic Diarrhea": {
         "medicines": [
-            "Oral electrolytes",
-            "Antibiotics for secondary infection"
+            "Oral Rehydration Salts",
+            "Neomycin",
+            "Colistin"
         ],
         "treatment_duration": "5-10 days",
         "notes": "Keep piglets warm and hydrated"
@@ -46,7 +47,7 @@
         "medicines": [
             "Tulathromycin",
             "Doxycycline",
-            "Supportive care"
+            "Meloxicam"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Vaccination available for prevention"
@@ -71,18 +72,18 @@
     },
     "Swine Fever": {
         "medicines": [
-            "Supportive fluids",
-            "Antipyretics",
-            "Antibiotics for secondary infections"
+            "Ringer's Lactate",
+            "Paracetamol",
+            "Amoxicillin"
         ],
         "treatment_duration": "7-14 days",
         "notes": "REPORTABLE DISEASE - Notify authorities immediately"
     },
     "Swine Influenza": {
         "medicines": [
-            "NSAIDs",
-            "Supportive fluids",
-            "Antibiotics for secondary infection"
+            "Meloxicam",
+            "Ringer's Lactate",
+            "Doxycycline"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Rest and warmth essential"
@@ -90,7 +91,7 @@
     "Bovine Coccidiosis": {
         "medicines": [
             "Amprolium",
-            "Sulfonamides",
+            "Sulfadimethoxine",
             "Toltrazuril"
         ],
         "treatment_duration": "5 days",
@@ -100,7 +101,7 @@
         "medicines": [
             "Flunixin Meglumine",
             "Tulathromycin",
-            "Supportive fluids"
+            "Isotonic Saline"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Reduce stress and ensure good ventilation"
@@ -108,19 +109,19 @@
     "Bovine Johne's Disease": {
         "medicines": [
             "Isoniazid",
-            "Supportive nutrition supplements",
-            "Probiotics",
-            "Anti-diarrheal medication"
+            "Vitamin B Complex",
+            "Probiogen",
+            "Loperamide"
         ],
         "treatment_duration": "60-90 days",
         "notes": "High energy diet and mineral supplements help - recheck every 30 days"
     },
     "Bovine Leukemia Virus": {
         "medicines": [
-            "Supportive care",
-            "Immune boosters",
-            "Antibiotics for secondary infections",
-            "Anti-inflammatory drugs"
+            "Levamisole",
+            "Vitamin C",
+            "Enrofloxacin",
+            "Meloxicam"
         ],
         "treatment_duration": "30-60 days",
         "notes": "Regular monitoring every 30 days"
@@ -128,7 +129,7 @@
     "Bovine Mastitis": {
         "medicines": [
             "Intramammary Penicillin",
-            "Cephalosporins",
+            "Cephalexin",
             "Oxytocin"
         ],
         "treatment_duration": "3-5 days",
@@ -138,7 +139,7 @@
         "medicines": [
             "Tulathromycin",
             "Florfenicol",
-            "NSAIDs"
+            "Flunixin Meglumine"
         ],
         "treatment_duration": "5 days",
         "notes": "Vaccination available"
@@ -154,9 +155,9 @@
     },
     "Bovine Respiratory Syncytial Virus": {
         "medicines": [
-            "Supportive care",
-            "Bronchodilators",
-            "Anti-inflammatory drugs"
+            "Meloxicam",
+            "Salbutamol",
+            "Dexamethasone"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Vaccination recommended"
@@ -165,35 +166,35 @@
         "medicines": [
             "Isoniazid",
             "Rifampicin",
-            "Supportive nutrition"
+            "Vitamin B6"
         ],
         "treatment_duration": "180-365 days",
         "notes": "REPORTABLE DISEASE - Only treated in rare valuable animals"
     },
     "Bovine Viral Diarrhea": {
         "medicines": [
-            "Supportive fluids",
-            "Electrolyte therapy",
-            "Antibiotics for secondary infections",
-            "NSAIDs"
+            "Ringer's Lactate",
+            "Electrolyte Solution",
+            "Enrofloxacin",
+            "Flunixin Meglumine"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Vaccination highly effective for prevention"
     },
     "Foot and Mouth Disease": {
         "medicines": [
-            "Antiseptic foot baths",
-            "Supportive fluids",
-            "Anti-inflammatory drugs"
+            "Potassium Permanganate Foot Bath",
+            "Ringer's Lactate",
+            "Meloxicam"
         ],
         "treatment_duration": "14 days",
         "notes": "REPORTABLE DISEASE - Contact authorities immediately"
     },
     "Canine Distemper": {
         "medicines": [
-            "Supportive care",
-            "Anti-seizure medication",
-            "IV fluids"
+            "Phenobarbitone",
+            "Diazepam",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "14-28 days",
         "notes": "Vaccination is best prevention"
@@ -209,45 +210,45 @@
     },
     "Canine Hepatitis": {
         "medicines": [
-            "IV fluids",
-            "Liver support supplements",
-            "Antibiotics"
+            "Ringer's Lactate",
+            "Silymarin",
+            "Amoxicillin"
         ],
         "treatment_duration": "14-21 days",
         "notes": "Monitor liver enzymes every 14 days"
     },
     "Canine Infectious Hepatitis": {
         "medicines": [
-            "IV fluids",
-            "Antibiotics",
-            "Vitamin C"
+            "Ringer's Lactate",
+            "Amoxicillin",
+            "Ascorbic Acid"
         ],
         "treatment_duration": "7-14 days",
         "notes": "Vaccination highly effective"
     },
     "Canine Influenza": {
         "medicines": [
-            "Antibiotics for secondary infection",
-            "NSAIDs",
-            "Supportive fluids"
+            "Doxycycline",
+            "Meloxicam",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "5-10 days",
         "notes": "Isolate from other dogs"
     },
     "Canine Leptospirosis": {
         "medicines": [
-            "Penicillin",
+            "Penicillin G",
             "Doxycycline",
-            "IV fluids"
+            "Ringer's Lactate"
         ],
         "treatment_duration": "7-14 days",
         "notes": "Zoonotic disease - handle with care"
     },
     "Canine Parvovirus": {
         "medicines": [
-            "IV fluids",
-            "Anti-nausea medication",
-            "Antibiotics"
+            "Ringer's Lactate",
+            "Maropitant",
+            "Amoxicillin-Clavulanate"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Highly contagious - strict isolation required"
@@ -255,8 +256,8 @@
     "Kennel Cough": {
         "medicines": [
             "Doxycycline",
-            "Cough suppressants",
-            "Bronchodilators"
+            "Butorphanol",
+            "Salbutamol"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Vaccination available"
@@ -264,7 +265,7 @@
     "Feline Asthma": {
         "medicines": [
             "Prednisolone",
-            "Bronchodilators",
+            "Salbutamol",
             "Cyclosporine"
         ],
         "treatment_duration": "21-30 days",
@@ -272,9 +273,9 @@
     },
     "Feline Calicivirus": {
         "medicines": [
-            "Supportive care",
-            "Antibiotics for secondary infection",
-            "Antiviral drugs"
+            "Famciclovir",
+            "Amoxicillin-Clavulanate",
+            "Interferon Omega"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Vaccination available"
@@ -283,16 +284,16 @@
         "medicines": [
             "Doxycycline",
             "Azithromycin",
-            "Eye drops"
+            "Chloramphenicol Eye Drops"
         ],
         "treatment_duration": "28-42 days",
         "notes": "Treat all cats in household"
     },
     "Feline Coronavirus": {
         "medicines": [
-            "GS-441524 antiviral",
-            "Supportive care",
-            "Prednisolone"
+            "GS-441524",
+            "Prednisolone",
+            "Vitamin B12"
         ],
         "treatment_duration": "84 days",
         "notes": "Early treatment improves prognosis"
@@ -301,17 +302,17 @@
         "medicines": [
             "L-Lysine",
             "Famciclovir",
-            "Antiviral eye drops"
+            "Idoxuridine Eye Drops"
         ],
         "treatment_duration": "14-21 days",
         "notes": "Stress triggers flare-ups - keep environment calm"
     },
     "Feline Immunodeficiency Virus": {
         "medicines": [
-            "Zidovudine (AZT)",
-            "Interferon omega",
-            "Antibiotics for infections",
-            "Immune modulators"
+            "Zidovudine",
+            "Interferon Omega",
+            "Doxycycline",
+            "Levamisole"
         ],
         "treatment_duration": "30-60 days",
         "notes": "Keep indoors to prevent spread - regular checkups every 90 days"
@@ -320,34 +321,34 @@
         "medicines": [
             "GS-441524",
             "Prednisolone",
-            "Supportive care"
+            "Vitamin B12"
         ],
         "treatment_duration": "84 days",
         "notes": "New antivirals show promising results"
     },
     "Feline Leukemia": {
         "medicines": [
-            "Supportive care",
-            "Chemotherapy",
-            "Interferon"
+            "Interferon Omega",
+            "Chlorambucil",
+            "Prednisolone"
         ],
         "treatment_duration": "30-45 days",
         "notes": "Vaccination available - monthly monitoring required"
     },
     "Feline Panleukopenia": {
         "medicines": [
-            "IV fluids",
-            "Antibiotics",
-            "Anti-nausea medication"
+            "Ringer's Lactate",
+            "Amoxicillin-Clavulanate",
+            "Maropitant"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Highly contagious - strict isolation"
     },
     "Feline Renal Disease": {
         "medicines": [
-            "IV fluids",
-            "Phosphate binders",
-            "ACE inhibitors"
+            "Ringer's Lactate",
+            "Aluminum Hydroxide",
+            "Benazepril"
         ],
         "treatment_duration": "14-21 days",
         "notes": "Low phosphorus diet essential - recheck every 30 days"
@@ -355,7 +356,7 @@
     "Feline Rhinotracheitis": {
         "medicines": [
             "Famciclovir",
-            "Supportive care",
+            "Doxycycline",
             "L-Lysine"
         ],
         "treatment_duration": "7-14 days",
@@ -364,25 +365,25 @@
     "Equine Arthritis": {
         "medicines": [
             "Phenylbutazone",
-            "Hyaluronic acid injections",
-            "Joint supplements"
+            "Hyaluronic Acid",
+            "Glucosamine Sulphate"
         ],
         "treatment_duration": "30-45 days",
         "notes": "Controlled exercise recommended - recheck every 60 days"
     },
     "Equine Cushing's Disease": {
         "medicines": [
-            "Pergolide mesylate",
-            "Supportive care"
+            "Pergolide Mesylate",
+            "Trilostane"
         ],
         "treatment_duration": "30-60 days",
         "notes": "Regular monitoring of ACTH levels every 90 days"
     },
     "Equine Encephalitis": {
         "medicines": [
-            "Supportive care",
-            "Anti-inflammatory drugs",
-            "IV fluids"
+            "Flunixin Meglumine",
+            "Dexamethasone",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "14-28 days",
         "notes": "Vaccination highly effective"
@@ -390,27 +391,27 @@
     "Equine Herpesvirus": {
         "medicines": [
             "Valacyclovir",
-            "NSAIDs",
-            "Supportive care"
+            "Flunixin Meglumine",
+            "Dexamethasone"
         ],
         "treatment_duration": "7-14 days",
         "notes": "Strict quarantine required"
     },
     "Equine Infectious Anemia": {
         "medicines": [
-            "Supportive fluids",
-            "Iron supplements",
-            "Vitamin B12 injections",
-            "Anti-inflammatory drugs"
+            "Ringer's Lactate",
+            "Iron Dextran",
+            "Cyanocobalamin",
+            "Flunixin Meglumine"
         ],
         "treatment_duration": "30-45 days",
         "notes": "REPORTABLE DISEASE - Coggins test required - recheck every 30 days"
     },
     "Equine Influenza": {
         "medicines": [
-            "NSAIDs",
-            "Rest",
-            "Supportive care"
+            "Flunixin Meglumine",
+            "Phenylbutazone",
+            "Doxycycline"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Vaccination recommended every 6 months"
@@ -419,16 +420,16 @@
         "medicines": [
             "Phenylbutazone",
             "Acepromazine",
-            "Hoof support pads"
+            "Isoxsuprine"
         ],
         "treatment_duration": "30-90 days",
         "notes": "Strict diet and stall rest required throughout treatment"
     },
     "Equine Leptospirosis": {
         "medicines": [
-            "Penicillin",
+            "Penicillin G",
             "Oxytetracycline",
-            "Supportive fluids"
+            "Ringer's Lactate"
         ],
         "treatment_duration": "7-14 days",
         "notes": "Zoonotic disease - handle with gloves"
@@ -444,55 +445,55 @@
     },
     "Equine Piroplasmosis": {
         "medicines": [
-            "Imidocarb dipropionate",
-            "Supportive fluids"
+            "Imidocarb Dipropionate",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "7-14 days",
         "notes": "REPORTABLE DISEASE in some countries"
     },
     "Equine Pneumonia": {
         "medicines": [
-            "Penicillin",
+            "Penicillin G",
             "Gentamicin",
-            "NSAIDs"
+            "Flunixin Meglumine"
         ],
         "treatment_duration": "14-28 days",
         "notes": "Rest and good nutrition essential throughout"
     },
     "Equine Strangles": {
         "medicines": [
-            "Penicillin",
-            "Hot packs on abscess",
-            "Supportive care"
+            "Penicillin G",
+            "Benzathine Penicillin",
+            "Meloxicam"
         ],
         "treatment_duration": "21-42 days",
         "notes": "Strict quarantine for 28 days minimum"
     },
     "Equine West Nile Virus": {
         "medicines": [
-            "Supportive care",
-            "Anti-inflammatory drugs",
-            "IV fluids"
+            "Flunixin Meglumine",
+            "Dexamethasone",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "14-30 days",
         "notes": "Vaccination available and highly effective"
     },
     "Rabbit Calicivirus": {
         "medicines": [
-            "Supportive fluids",
-            "Antipyretics",
-            "Liver support supplements",
-            "Vitamin K"
+            "Ringer's Lactate",
+            "Paracetamol",
+            "Silymarin",
+            "Phytomenadione"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Vaccination essential - supportive care maintains hydration"
     },
     "Rabbit Hemorrhagic Disease": {
         "medicines": [
-            "Supportive fluids",
-            "Vitamin K injections",
-            "Liver protectants",
-            "Antipyretics"
+            "Ringer's Lactate",
+            "Phytomenadione",
+            "Silymarin",
+            "Paracetamol"
         ],
         "treatment_duration": "5-7 days",
         "notes": "REPORTABLE DISEASE - Intensive supportive care may improve survival"
@@ -500,17 +501,17 @@
     "Rabbit Syphilis": {
         "medicines": [
             "Penicillin G",
-            "Benzathine penicillin"
+            "Benzathine Penicillin"
         ],
         "treatment_duration": "21 days",
         "notes": "Do not use oral penicillin in rabbits"
     },
     "Myxomatosis": {
         "medicines": [
-            "Supportive fluids",
-            "Antibiotics for secondary infections",
-            "Anti-inflammatory drugs",
-            "Eye drops for conjunctivitis"
+            "Ringer's Lactate",
+            "Enrofloxacin",
+            "Meloxicam",
+            "Chloramphenicol Eye Drops"
         ],
         "treatment_duration": "14-21 days",
         "notes": "Intensive nursing care improves survival chances"
@@ -518,36 +519,36 @@
     "Snuffles": {
         "medicines": [
             "Enrofloxacin",
-            "Trimethoprim-sulfa",
-            "Nasal drops"
+            "Trimethoprim Sulphamethoxazole",
+            "Saline Nasal Drops"
         ],
         "treatment_duration": "14-30 days",
         "notes": "May require repeat treatment every 30 days if recurrence"
     },
     "Scrapie": {
         "medicines": [
-            "Supportive nutrition",
-            "Anti-inflammatory drugs",
-            "Pain management",
-            "Vitamin supplements"
+            "Vitamin B Complex",
+            "Meloxicam",
+            "Tramadol",
+            "Vitamin E"
         ],
         "treatment_duration": "30-45 days",
         "notes": "REPORTABLE DISEASE - Palliative care focuses on animal comfort"
     },
     "Blue Tongue Virus": {
         "medicines": [
-            "Supportive care",
-            "Anti-inflammatory drugs"
+            "Meloxicam",
+            "Flunixin Meglumine"
         ],
         "treatment_duration": "14-21 days",
         "notes": "Vaccination available - insect control important"
     },
     "Maedi-Visna": {
         "medicines": [
-            "Supportive nutrition",
-            "Antibiotics for secondary infections",
-            "Anti-inflammatory drugs",
-            "Vitamin supplements"
+            "Vitamin B Complex",
+            "Enrofloxacin",
+            "Meloxicam",
+            "Vitamin E"
         ],
         "treatment_duration": "30-60 days",
         "notes": "Supportive care and good nutrition help manage progression"
@@ -562,19 +563,19 @@
     },
     "Goat Pox": {
         "medicines": [
-            "Supportive fluids",
-            "Antibiotics for secondary infections",
-            "Antiseptic skin treatment",
-            "Anti-inflammatory drugs"
+            "Ringer's Lactate",
+            "Enrofloxacin",
+            "Povidone Iodine",
+            "Meloxicam"
         ],
         "treatment_duration": "14-28 days",
         "notes": "REPORTABLE DISEASE - Focus on preventing secondary infections"
     },
     "Caprine Arthritis": {
         "medicines": [
-            "NSAIDs",
-            "Joint supplements",
-            "Supportive care"
+            "Meloxicam",
+            "Glucosamine Sulphate",
+            "Dexamethasone"
         ],
         "treatment_duration": "30-45 days",
         "notes": "Symptom management focus - recheck every 45 days"
@@ -582,8 +583,8 @@
     "Gastroenteritis": {
         "medicines": [
             "Metronidazole",
-            "Oral electrolytes",
-            "Probiotics"
+            "Oral Rehydration Salts",
+            "Lactobacillus"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Bland diet during recovery"
@@ -592,7 +593,7 @@
         "medicines": [
             "Metronidazole",
             "Fenbendazole",
-            "Probiotics"
+            "Lactobacillus"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Disinfect environment thoroughly"
@@ -600,7 +601,7 @@
     "Hyperthyroidism": {
         "medicines": [
             "Methimazole",
-            "Radioactive iodine",
+            "Radioactive Iodine I-131",
             "Carbimazole"
         ],
         "treatment_duration": "30-60 days",
@@ -610,7 +611,7 @@
         "medicines": [
             "Prednisolone",
             "Metronidazole",
-            "Vitamin B12"
+            "Cyanocobalamin"
         ],
         "treatment_duration": "30-60 days",
         "notes": "Hypoallergenic diet recommended - recheck every 30 days"
@@ -618,7 +619,7 @@
     "Intestinal Parasites": {
         "medicines": [
             "Fenbendazole",
-            "Pyrantel pamoate",
+            "Pyrantel Pamoate",
             "Ivermectin"
         ],
         "treatment_duration": "1-3 days",
@@ -626,9 +627,9 @@
     },
     "Leptospirosis": {
         "medicines": [
-            "Penicillin",
+            "Penicillin G",
             "Doxycycline",
-            "IV fluids"
+            "Ringer's Lactate"
         ],
         "treatment_duration": "7-14 days",
         "notes": "Zoonotic disease - use protective gear"
@@ -644,36 +645,36 @@
     },
     "Pancreatitis": {
         "medicines": [
-            "IV fluids",
-            "Pain management",
-            "Anti-nausea medication"
+            "Ringer's Lactate",
+            "Tramadol",
+            "Maropitant"
         ],
         "treatment_duration": "3-7 days",
         "notes": "Low fat diet essential"
     },
     "Pyometra": {
         "medicines": [
-            "Emergency spay surgery",
-            "Antibiotics",
-            "IV fluids"
+            "Aglepristone",
+            "Amoxicillin-Clavulanate",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "7-14 days",
-        "notes": "Life threatening - immediate vet attention needed"
+        "notes": "Life threatening - immediate surgical evaluation needed"
     },
     "Ringworm": {
         "medicines": [
             "Itraconazole",
             "Terbinafine",
-            "Antifungal shampoo"
+            "Miconazole Shampoo"
         ],
         "treatment_duration": "42-56 days",
         "notes": "Disinfect environment - contagious to humans"
     },
     "Salmonellosis": {
         "medicines": [
-            "Supportive fluids",
-            "Antibiotics if severe",
-            "Probiotics"
+            "Ringer's Lactate",
+            "Enrofloxacin",
+            "Lactobacillus"
         ],
         "treatment_duration": "5-7 days",
         "notes": "Zoonotic disease - strict hygiene required"
@@ -681,8 +682,8 @@
     "Tick-Borne Disease": {
         "medicines": [
             "Doxycycline",
-            "Supportive care",
-            "Tick removal"
+            "Imidocarb Dipropionate",
+            "Fipronil"
         ],
         "treatment_duration": "14-28 days",
         "notes": "Regular tick checks and prevention essential"
@@ -690,17 +691,17 @@
     "Upper Respiratory Infection": {
         "medicines": [
             "Doxycycline",
-            "Amoxicillin",
-            "Supportive care"
+            "Amoxicillin-Clavulanate",
+            "Bromhexine"
         ],
         "treatment_duration": "7-10 days",
         "notes": "Keep warm and well hydrated"
     },
     "West Nile Virus": {
         "medicines": [
-            "Supportive care",
-            "Anti-inflammatory drugs",
-            "IV fluids"
+            "Flunixin Meglumine",
+            "Dexamethasone",
+            "Ringer's Lactate"
         ],
         "treatment_duration": "14-30 days",
         "notes": "Mosquito control essential for prevention"
